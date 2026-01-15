@@ -873,3 +873,82 @@ body {
     display: none;
   }
 }
+
+/* =========================
+   HAMBURGER MENU (MOBILE)
+========================= */
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-dark);
+  margin: 4px 0;
+}
+
+/* Mobile menu panel */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--ivory);
+  padding: 6rem 2rem 2rem;
+  display: none;
+  flex-direction: column;
+  gap: 1.2rem;
+  z-index: 2000;
+}
+
+.mobile-menu a,
+.mobile-menu summary {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mobile-menu details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.mobile-menu details a {
+  padding-left: 1rem;
+  font-size: 1rem;
+}
+
+.mobile-cta {
+  margin-top: 1.5rem;
+  padding: 0.9rem;
+  text-align: center;
+  border-radius: 999px;
+  background: var(--taupe);
+  color: white;
+}
+
+/* =========================
+   MOBILE OVERRIDES
+========================= */
+
+@media (max-width: 768px) {
+
+  .main-nav {
+    display: none; /* hide desktop nav */
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .mobile-menu.open {
+    display: flex;
+  }
+}
