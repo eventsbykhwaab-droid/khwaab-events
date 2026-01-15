@@ -773,4 +773,46 @@ body {
     margin: 0 auto;
     text-align: center;
   }
+/* =========================
+   MOBILE HEADER FIX (SAFE)
+   Appends to existing rules
+========================= */
+
+@media (max-width: 768px) {
+
+  /* Keep header from breaking layout */
+  .header-inner {
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  /* Logo lockup – prevent stacking */
+  .logo-lockup {
+    max-width: 150px;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-size: 0.9rem;
+    line-height: 1.2;
+    white-space: nowrap;   /* KEY FIX */
+  }
+
+  /* Navigation – allow horizontal scroll instead of cutoff */
+  .main-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;       /* KEY FIX */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide scrollbar for clean look */
+  .main-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .main-nav a {
+    white-space: nowrap;
+  }
+}
 
