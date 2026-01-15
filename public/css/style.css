@@ -816,3 +816,60 @@ body {
   }
 }
 
+/* =========================
+   MOBILE HEADER – FINAL FIX
+========================= */
+
+@media (max-width: 768px) {
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  /* Logo: lock its width so nav can't overlap */
+  .logo {
+    flex-shrink: 0;
+    max-width: 150px;
+  }
+
+  .logo-lockup {
+    max-width: 150px;
+    overflow: hidden;
+  }
+
+  .logo-text {
+    font-size: 0.9rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  /* Nav: takes remaining space + scrolls */
+  .main-nav {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-left: 0.8rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide scrollbar */
+  .main-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .main-nav a {
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  /* Keep CTA hidden on mobile */
+  .main-nav .cta {
+    display: none;
+  }
+}
