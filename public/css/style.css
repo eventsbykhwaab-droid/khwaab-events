@@ -152,7 +152,43 @@ body {
   background: #f4f1ed;
 }
 
+/* =========================
+   PACKAGE BUTTONS
+========================= */
 
+.package-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.package-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.2rem 1.5rem;
+  border-radius: 18px;
+  background: white;
+  border: 1px solid #e6e0db;
+  font-size: 1.15rem;
+  text-decoration: none;
+  color: var(--text-dark);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.package-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .package-buttons {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* =========================
    HERO
