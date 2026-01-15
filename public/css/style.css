@@ -938,10 +938,15 @@ body {
    MOBILE OVERRIDES
 ========================= */
 
+/* Hide mobile menu by default */
+.mobile-menu {
+  display: none;
+}
+
 @media (max-width: 768px) {
 
   .main-nav {
-    display: none; /* hide desktop nav */
+    display: none;
   }
 
   .hamburger {
@@ -951,8 +956,4 @@ body {
   .mobile-menu.open {
     display: flex;
   }
-}
-/* Hide mobile menu by default (desktop) */
-.mobile-menu {
-  display: none;
 }
