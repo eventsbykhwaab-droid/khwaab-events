@@ -97,17 +97,29 @@ body {
 }
 
 /* =========================
-   NAV DROPDOWN (FIXED)
+   NAV DROPDOWN (ALIGNED)
 ========================= */
 
 .nav-dropdown {
   position: relative;
-  padding-bottom: 12px; /* creates hover buffer */
+  display: flex;
+  align-items: center; /* aligns with other nav links */
 }
 
+/* invisible hover buffer */
+.nav-dropdown::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: 14px;
+  width: 100%;
+}
+
+/* dropdown menu */
 .dropdown-menu {
   position: absolute;
-  top: 100%;            /* sit directly under Packages */
+  top: calc(100% + 14px);
   left: 50%;
   transform: translateX(-50%);
   background: white;
@@ -117,11 +129,11 @@ body {
   padding: 0.6rem 0;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.18s ease;
   z-index: 1000;
 }
 
-/* keep dropdown open when hovering parent OR menu */
+/* keep open on hover */
 .nav-dropdown:hover .dropdown-menu,
 .dropdown-menu:hover {
   opacity: 1;
@@ -139,6 +151,7 @@ body {
 .dropdown-menu a:hover {
   background: #f4f1ed;
 }
+
 
 
 /* =========================
