@@ -50,9 +50,32 @@
 <a href="/faq.html">FAQ</a>
 <a href="/contact.html" class="cta">Book a Call</a>
     </nav>
+
+      <button class="hamburger" aria-label="Open menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+      
     </div>
   </header>
 
+  <div class="mobile-menu">
+  <a href="/index.html">Home</a>
+
+  <details>
+    <summary>Packages</summary>
+    <a href="/pdfs/nikkah-packages.pdf" target="_blank">Nikkah Packages</a>
+    <a href="/pdfs/mehndi-packages.pdf" target="_blank">Mehndi Packages</a>
+    <a href="/pdfs/party-packages.pdf" target="_blank">Party Packages</a>
+  </details>
+
+  <a href="/gallery.html">Gallery</a>
+  <a href="/about.html">About</a>
+  <a href="/faq.html">FAQ</a>
+  <a href="/contact.html" class="mobile-cta">Book a Call</a>
+</div>
+  
   <!-- PAGE INTRO -->
   <section class="gallery-hero">
     <h1>Gallery</h1>
@@ -224,5 +247,14 @@
     <p>© Khwaab Events</p>
   </div>
 </footer>
+  <script>
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+  
 </body>
 </html>
