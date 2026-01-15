@@ -97,33 +97,40 @@ body {
 }
 
 /* =========================
-   NAV DROPDOWN
+   NAV DROPDOWN (FIXED)
 ========================= */
 
 .nav-dropdown {
   position: relative;
-}
-
-.nav-dropdown > a {
-  cursor: pointer;
+  padding-bottom: 12px; /* creates hover buffer */
 }
 
 .dropdown-menu {
   position: absolute;
-  top: 120%;
-  left: 0;
+  top: 100%;            /* sit directly under Packages */
+  left: 50%;
+  transform: translateX(-50%);
   background: white;
   border: 1px solid #e6e0db;
-  border-radius: 8px;
-  min-width: 200px;
+  border-radius: 10px;
+  min-width: 220px;
   padding: 0.6rem 0;
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
   z-index: 1000;
+}
+
+/* keep dropdown open when hovering parent OR menu */
+.nav-dropdown:hover .dropdown-menu,
+.dropdown-menu:hover {
+  opacity: 1;
+  visibility: visible;
 }
 
 .dropdown-menu a {
   display: block;
-  padding: 0.55rem 1.2rem;
+  padding: 0.6rem 1.4rem;
   font-size: 0.9rem;
   color: var(--text-dark);
   text-decoration: none;
@@ -133,9 +140,6 @@ body {
   background: #f4f1ed;
 }
 
-.nav-dropdown:hover .dropdown-menu {
-  display: block;
-}
 
 /* =========================
    HERO
