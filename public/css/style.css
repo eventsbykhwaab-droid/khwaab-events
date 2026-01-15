@@ -773,113 +773,14 @@ body {
     margin: 0 auto;
     text-align: center;
   }
-/* =========================
-   MOBILE HEADER FIX (SAFE)
-   Appends to existing rules
-========================= */
-
-@media (max-width: 768px) {
-
-  /* Keep header from breaking layout */
-  .header-inner {
-    flex-wrap: nowrap;
-    align-items: center;
-  }
-
-  /* Logo lockup – prevent stacking */
-  .logo-lockup {
-    max-width: 150px;
-    gap: 0.4rem;
-    flex-shrink: 0;
-  }
-
-  .logo-text {
-    font-size: 0.9rem;
-    line-height: 1.2;
-    white-space: nowrap;   /* KEY FIX */
-  }
-
-  /* Navigation – allow horizontal scroll instead of cutoff */
-  .main-nav {
-    flex-wrap: nowrap;
-    overflow-x: auto;       /* KEY FIX */
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Hide scrollbar for clean look */
-  .main-nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  .main-nav a {
-    white-space: nowrap;
-  }
 }
-
-/* =========================
-   MOBILE HEADER – FINAL FIX
-========================= */
-
-@media (max-width: 768px) {
-
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-  }
-
-  /* Logo: lock its width so nav can't overlap */
-  .logo {
-    flex-shrink: 0;
-    max-width: 150px;
-  }
-
-  .logo-lockup {
-    max-width: 150px;
-    overflow: hidden;
-  }
-
-  .logo-text {
-    font-size: 0.9rem;
-    line-height: 1.2;
-    white-space: nowrap;
-  }
-
-  /* Nav: takes remaining space + scrolls */
-  .main-nav {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-    gap: 1rem;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding-left: 0.8rem;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Hide scrollbar */
-  .main-nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  .main-nav a {
-    font-size: 0.85rem;
-    white-space: nowrap;
-  }
-
-  /* Keep CTA hidden on mobile */
-  .main-nav .cta {
-    display: none;
-  }
-}
-
 /* =========================
    HAMBURGER MENU (MOBILE)
 ========================= */
 
+/* Hamburger button */
 .hamburger {
-  display: none;
+  display: none; /* hidden on desktop */
   background: none;
   border: none;
   cursor: pointer;
@@ -894,13 +795,13 @@ body {
   margin: 4px 0;
 }
 
-/* Mobile menu panel */
+/* Mobile menu panel (hidden by default) */
 .mobile-menu {
   position: fixed;
   inset: 0;
   background: var(--ivory);
   padding: 6rem 2rem 2rem;
-  display: none;
+  display: none; /* KEY: hidden on desktop */
   flex-direction: column;
   gap: 1.2rem;
   z-index: 2000;
@@ -938,22 +839,21 @@ body {
    MOBILE OVERRIDES
 ========================= */
 
-/* Hide mobile menu by default */
-.mobile-menu {
-  display: none;
-}
-
 @media (max-width: 768px) {
 
+  /* Hide desktop nav */
   .main-nav {
     display: none;
   }
 
+  /* Show hamburger */
   .hamburger {
     display: block;
   }
 
+  /* Show mobile menu only when open */
   .mobile-menu.open {
     display: flex;
   }
 }
+
