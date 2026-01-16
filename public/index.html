@@ -59,20 +59,29 @@
     
   </div>
 </header>
-<div class="mobile-menu">
-  <a href="/index.html">Home</a>
+<div class="mobile-drawer" id="mobileDrawer">
 
-  <details>
-    <summary>Packages</summary>
-    <a href="/pdfs/nikkah-packages.pdf" target="_blank">Nikkah Packages</a>
-    <a href="/pdfs/mehndi-packages.pdf" target="_blank">Mehndi Packages</a>
-    <a href="/pdfs/party-packages.pdf" target="_blank">Party Packages</a>
-  </details>
+  <button class="drawer-close" aria-label="Close menu">✕</button>
 
-  <a href="/gallery.html">Gallery</a>
-  <a href="/about.html">About</a>
-  <a href="/faq.html">FAQ</a>
-  <a href="/contact.html" class="mobile-cta">Book a Call</a>
+  <nav class="drawer-nav">
+    <a href="/index.html">Home</a>
+
+    <details class="drawer-accordion">
+      <summary>Packages</summary>
+      <a href="/pdfs/nikkah-packages.pdf" target="_blank">Nikkah Packages</a>
+      <a href="/pdfs/mehndi-packages.pdf" target="_blank">Mehndi Packages</a>
+      <a href="/pdfs/party-packages.pdf" target="_blank">Party Packages</a>
+    </details>
+
+    <a href="/gallery.html">Gallery</a>
+    <a href="/about.html">About</a>
+    <a href="/faq.html">FAQ</a>
+  </nav>
+
+  <div class="drawer-cta">
+    <a href="/contact.html">Book a Call</a>
+  </div>
+
 </div>
   <!-- Hero -->
   <section class="hero">
@@ -174,10 +183,22 @@
 
 <script>
   const hamburger = document.querySelector('.hamburger');
-  const mobileMenu = document.querySelector('.mobile-menu');
+  const drawer = document.getElementById('mobileDrawer');
+  const closeBtn = document.querySelector('.drawer-close');
 
   hamburger.addEventListener('click', () => {
-    mobileMenu.classList.toggle('open');
+    drawer.classList.add('open');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    drawer.classList.remove('open');
+  });
+
+  // close drawer when a link is clicked
+  drawer.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      drawer.classList.remove('open');
+    });
   });
 </script>
   
