@@ -35,17 +35,22 @@ body {
 .site-header {
   background: var(--ivory);
   border-bottom: 1px solid #e6e0db;
+
   position: sticky;
   top: 0;
-  z-index: 4000;
+  z-index: 5000; /* bumped up to beat gallery layers */
 }
 
+/* Inner header wrapper */
 .header-inner {
   width: 100%;
-  padding: 0.6rem 3rem; /* ↓ reduced top & bottom */
+  padding: 0.6rem 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  position: relative; /* IMPORTANT */
+  z-index: 5001;       /* keeps hamburger clickable */
 }
 
 /* Logo */
@@ -488,6 +493,8 @@ body {
 .gallery-hero {
   text-align: center;
   padding: 5rem 2rem 3rem;
+  position: relative; /* creates proper stacking context */
+  z-index: 1;         /* ensures it stays below header */
 }
 
 .gallery-hero h1 {
