@@ -5,6 +5,7 @@
   --blush: #e6cfc2;
   --gold: #b89b6d;
   --text-dark: #2b2b2b;
+  --header-height: 78px;
 }
 
 * {
@@ -38,7 +39,8 @@ body {
 
   position: sticky;
   top: 0;
-  z-index: 5000; /* bumped up to beat gallery layers */
+  height: var(--header-height);
+  z-index: 5000;
 }
 
 /* Inner header wrapper */
@@ -492,9 +494,9 @@ body {
 
 .gallery-hero {
   text-align: center;
-  padding: 5rem 2rem 3rem;
-  position: relative; /* creates proper stacking context */
-  z-index: 1;         /* ensures it stays below header */
+  padding: calc(5rem + var(--header-height)) 2rem 3rem;
+  position: relative;
+  z-index: 1;
 }
 
 .gallery-hero h1 {
@@ -797,6 +799,8 @@ body {
   cursor: pointer;
   z-index: 4100;
   position: relative;
+  pointer-events: auto;
+  touch-action: manipulation;
 }
 
 .hamburger span {
