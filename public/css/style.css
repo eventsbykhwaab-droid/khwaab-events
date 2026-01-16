@@ -850,6 +850,20 @@ body {
   gap: 1.8rem;
 }
 
+/* Reorder drawer items (mobile only) */
+@media (max-width: 768px) {
+
+  /* default order for links */
+  .drawer-nav > a {
+    order: 1;
+  }
+
+  /* push Packages accordion to bottom */
+  .drawer-accordion {
+    order: 99;
+  }
+
+}
 /* Primary links */
 .drawer-nav > a {
   font-size: 1.25rem;
