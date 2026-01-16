@@ -170,7 +170,7 @@
     const images = document.querySelectorAll('.gallery-grid img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-    const closeBtn = document.getElementById('close');
+    const lightboxCloseBtn = document.getElementById('close');
     const nextBtn = document.querySelector('.next');
     const prevBtn = document.querySelector('.prev');
 
@@ -197,7 +197,9 @@
       img.addEventListener('click', () => openLightbox(index));
     });
 
-    closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
+    lightboxCloseBtn.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
     nextBtn.addEventListener('click', showNext);
     prevBtn.addEventListener('click', showPrev);
 
