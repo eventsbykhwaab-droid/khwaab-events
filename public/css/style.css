@@ -892,23 +892,25 @@ body {
   gap: 0.8rem;
 }
 
-/* Summary row */
+/* Summary row — MATCHES primary nav links */
 .drawer-accordion summary {
   font-size: 1.25rem;
   font-weight: 500;
+  color: var(--text-dark);
   cursor: pointer;
   position: relative;
+
   padding-bottom: 1rem;
   padding-right: 1.6rem;
 }
 
-/* Custom chevron */
+/* Chevron (aligned like other links) */
 .drawer-accordion summary::after {
   content: "⌄";
   position: absolute;
   right: 0;
-  top: 0.2rem;
-  font-size: 1.2rem;
+  top: 0.15rem;
+  font-size: 1.1rem;
   opacity: 0.6;
   transition: transform 0.25s ease;
 }
@@ -917,13 +919,22 @@ body {
   transform: rotate(180deg);
 }
 
-/* Sub-links (Packages list) */
+/* Sub-links container — FORCE vertical stack */
+.drawer-accordion[open] {
+  padding-bottom: 0.6rem;
+}
+
 .drawer-accordion a {
+  display: block;                 /* key line */
   font-size: 1rem;
   color: #666;
   text-decoration: none;
   padding-left: 1.2rem;
   line-height: 1.8;
+}
+
+.drawer-accordion a:hover {
+  color: var(--gold);
 }
 
 /* =========================
