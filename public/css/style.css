@@ -776,7 +776,7 @@ body {
 }
 
 /* =========================
-   MOBILE LUXURY DRAWER
+   MOBILE LUXURY DRAWER (FINAL)
 ========================= */
 
 /* Hamburger */
@@ -795,7 +795,7 @@ body {
   margin: 4px 0;
 }
 
-/* Drawer */
+/* Drawer layout */
 .mobile-drawer {
   position: fixed;
   top: 0;
@@ -804,9 +804,9 @@ body {
   max-width: 360px;
   height: 100vh;
   background: linear-gradient(to bottom, #f7f3ef, #f3ede7);
-  padding: 2.5rem 2rem;
-  display: flex;
-  flex-direction: column;
+  padding: 2.2rem 2rem;
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* close | nav | CTA */
   transform: translateX(100%);
   transition: transform 0.35s ease;
   z-index: 3000;
@@ -822,25 +822,28 @@ body {
   border: none;
   font-size: 1.4rem;
   cursor: pointer;
-  align-self: flex-end;
-  margin-bottom: 1.5rem;
+  justify-self: end;
+  margin-bottom: 1.2rem;
+  color: var(--text-dark);
 }
 
-/* Nav */
+/* Nav (scrolls if needed) */
 .drawer-nav {
-  flex: 1;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
+  padding-bottom: 1.4rem;
 }
 
+/* Primary links */
 .drawer-nav > a {
   font-size: 1.2rem;
   text-decoration: none;
   color: var(--text-dark);
 }
 
+/* Dividers */
 .drawer-nav > a::after {
   content: "";
   display: block;
@@ -849,37 +852,58 @@ body {
   margin-top: 1.2rem;
 }
 
-/* Packages accordion */
+/* =========================
+   PACKAGES ACCORDION
+========================= */
+
+/* Remove native disclosure arrow (Safari/iOS) */
+.drawer-accordion summary {
+  list-style: none;
+}
+
+.drawer-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Summary row */
 .drawer-accordion summary {
   font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
   position: relative;
+  padding-right: 1.4rem;
 }
 
+/* Custom chevron */
 .drawer-accordion summary::after {
   content: "›";
   position: absolute;
   right: 0;
-  transform: rotate(90deg);
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
   opacity: 0.5;
+  transition: transform 0.2s ease;
 }
 
 .drawer-accordion[open] summary::after {
-  transform: rotate(-90deg);
+  transform: translateY(-50%) rotate(-90deg);
 }
 
+/* Sub-links */
 .drawer-accordion a {
   font-size: 0.95rem;
   padding-left: 1.2rem;
   color: #666;
   text-decoration: none;
+  margin-top: 0.2rem;
 }
 
-/* CTA pinned */
+/* =========================
+   CTA (PINNED)
+========================= */
+
 .drawer-cta {
-  margin-top: auto;
-  padding-top: 1.8rem;
+  padding-top: 1.6rem;
   border-top: 1px solid rgba(0,0,0,0.08);
 }
 
@@ -893,9 +917,13 @@ body {
   color: white;
   text-decoration: none;
   font-size: 1.05rem;
+  letter-spacing: 0.02em;
 }
 
-/* Mobile rules */
+/* =========================
+   MOBILE RULES
+========================= */
+
 @media (max-width: 768px) {
   .main-nav {
     display: none;
