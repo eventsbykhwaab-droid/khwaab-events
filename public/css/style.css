@@ -843,29 +843,33 @@ body {
   color: var(--text-dark);
 }
 
-/* Nav (scrolls if needed) */
+/* Drawer nav base */
 .drawer-nav {
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
-  padding-bottom: 1.4rem;
+  gap: 1.8rem;
 }
 
 /* Primary links */
 .drawer-nav > a {
-  font-size: 1.2rem;
-  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   color: var(--text-dark);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 1rem;
 }
 
-/* Dividers */
+/* Divider under primary links */
 .drawer-nav > a::after {
   content: "";
-  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   height: 1px;
-  background: rgba(0,0,0,0.06);
-  margin-top: 1.2rem;
+  background: rgba(0,0,0,0.08);
 }
 
 /* =========================
@@ -881,37 +885,45 @@ body {
   display: none;
 }
 
+/* Accordion container */
+.drawer-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
 /* Summary row */
 .drawer-accordion summary {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 500;
   cursor: pointer;
   position: relative;
-  padding-right: 1.4rem;
+  padding-bottom: 1rem;
+  padding-right: 1.6rem;
 }
 
 /* Custom chevron */
 .drawer-accordion summary::after {
-  content: "›";
+  content: "⌄";
   position: absolute;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%) rotate(90deg);
-  opacity: 0.5;
-  transition: transform 0.2s ease;
+  top: 0.2rem;
+  font-size: 1.2rem;
+  opacity: 0.6;
+  transition: transform 0.25s ease;
 }
 
 .drawer-accordion[open] summary::after {
-  transform: translateY(-50%) rotate(-90deg);
+  transform: rotate(180deg);
 }
 
-/* Sub-links */
+/* Sub-links (Packages list) */
 .drawer-accordion a {
-  font-size: 0.95rem;
-  padding-left: 1.2rem;
+  font-size: 1rem;
   color: #666;
   text-decoration: none;
-  margin-top: 0.2rem;
+  padding-left: 1.2rem;
+  line-height: 1.8;
 }
 
 /* =========================
@@ -920,19 +932,19 @@ body {
 
 .drawer-cta {
   padding-top: 1.6rem;
-  border-top: 1px solid rgba(0,0,0,0.08);
+  border-top: 1px solid rgba(0,0,0,0.12);
 }
 
 .drawer-cta a {
   display: block;
   width: 100%;
   text-align: center;
-  padding: 0.95rem;
+  padding: 1rem;
   border-radius: 999px;
   background: var(--taupe);
   color: white;
   text-decoration: none;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   letter-spacing: 0.02em;
 }
 
