@@ -35,6 +35,9 @@ body {
 .site-header {
   background: var(--ivory);
   border-bottom: 1px solid #e6e0db;
+  position: sticky;
+  top: 0;
+  z-index: 4000;
 }
 
 .header-inner {
@@ -785,6 +788,8 @@ body {
   background: none;
   border: none;
   cursor: pointer;
+  z-index: 4100;
+  position: relative;
 }
 
 .hamburger span {
