@@ -774,19 +774,20 @@ body {
     text-align: center;
   }
 }
+
 /* =========================
-   HAMBURGER MENU (MOBILE)
+   MOBILE LUXURY DRAWER
 ========================= */
 
 /* Hamburger button */
 .hamburger {
-  display: none; /* hidden on desktop */
+  display: none;
   background: none;
   border: none;
   cursor: pointer;
-  flex-shrink: 0;
 }
 
+/* Hamburger bars */
 .hamburger span {
   display: block;
   width: 22px;
@@ -795,65 +796,101 @@ body {
   margin: 4px 0;
 }
 
-/* Mobile menu panel (hidden by default) */
-.mobile-menu {
+/* Drawer container */
+.mobile-drawer {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  width: 85%;
+  max-width: 360px;
+  height: 100vh;
   background: var(--ivory);
-  padding: 6rem 2rem 2rem;
-  display: none; /* KEY: hidden on desktop */
+  padding: 2.5rem 2rem;
+  display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  z-index: 2000;
+  justify-content: space-between;
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+  z-index: 3000;
 }
 
-.mobile-menu a,
-.mobile-menu summary {
-  font-size: 1.1rem;
+/* Open state */
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+/* Close button */
+.drawer-close {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-bottom: 2rem;
   color: var(--text-dark);
+}
+
+/* Navigation links */
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.drawer-nav a,
+.drawer-nav summary {
+  font-size: 1.15rem;
   text-decoration: none;
+  color: var(--text-dark);
   cursor: pointer;
 }
 
-.mobile-menu details {
+/* Accordion */
+.drawer-accordion {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 }
 
-.mobile-menu details a {
-  padding-left: 1rem;
-  font-size: 1rem;
+.drawer-accordion summary {
+  list-style: none;
 }
 
-.mobile-cta {
-  margin-top: 1.5rem;
-  padding: 0.9rem;
+.drawer-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.drawer-accordion a {
+  padding-left: 1rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* CTA */
+.drawer-cta a {
+  display: block;
+  width: 100%;
   text-align: center;
+  padding: 0.95rem;
   border-radius: 999px;
   background: var(--taupe);
   color: white;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
 /* =========================
-   MOBILE OVERRIDES
+   MOBILE ONLY RULES
 ========================= */
 
 @media (max-width: 768px) {
 
-  /* Hide desktop nav */
   .main-nav {
     display: none;
   }
 
-  /* Show hamburger */
   .hamburger {
     display: block;
-  }
-
-  /* Show mobile menu only when open */
-  .mobile-menu.open {
-    display: flex;
   }
 }
 
