@@ -779,7 +779,7 @@ body {
    MOBILE LUXURY DRAWER
 ========================= */
 
-/* Hamburger button */
+/* Hamburger */
 .hamburger {
   display: none;
   background: none;
@@ -787,7 +787,6 @@ body {
   cursor: pointer;
 }
 
-/* Hamburger bars */
 .hamburger span {
   display: block;
   width: 22px;
@@ -796,7 +795,7 @@ body {
   margin: 4px 0;
 }
 
-/* Drawer container */
+/* Drawer */
 .mobile-drawer {
   position: fixed;
   top: 0;
@@ -804,17 +803,15 @@ body {
   width: 85%;
   max-width: 360px;
   height: 100vh;
-  background: var(--ivory);
+  background: linear-gradient(to bottom, #f7f3ef, #f3ede7);
   padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   transform: translateX(100%);
   transition: transform 0.35s ease;
   z-index: 3000;
 }
 
-/* Open state */
 .mobile-drawer.open {
   transform: translateX(0);
 }
@@ -826,47 +823,66 @@ body {
   font-size: 1.4rem;
   cursor: pointer;
   align-self: flex-end;
-  margin-bottom: 2rem;
-  color: var(--text-dark);
+  margin-bottom: 1.5rem;
 }
 
-/* Navigation links */
+/* Nav */
 .drawer-nav {
+  flex: 1;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
 }
 
-.drawer-nav a,
-.drawer-nav summary {
-  font-size: 1.15rem;
+.drawer-nav > a {
+  font-size: 1.2rem;
   text-decoration: none;
   color: var(--text-dark);
-  cursor: pointer;
 }
 
-/* Accordion */
-.drawer-accordion {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
+.drawer-nav > a::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: rgba(0,0,0,0.06);
+  margin-top: 1.2rem;
 }
 
+/* Packages accordion */
 .drawer-accordion summary {
-  list-style: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
 }
 
-.drawer-accordion summary::-webkit-details-marker {
-  display: none;
+.drawer-accordion summary::after {
+  content: "›";
+  position: absolute;
+  right: 0;
+  transform: rotate(90deg);
+  opacity: 0.5;
+}
+
+.drawer-accordion[open] summary::after {
+  transform: rotate(-90deg);
 }
 
 .drawer-accordion a {
-  padding-left: 1rem;
-  font-size: 1rem;
-  color: #555;
+  font-size: 0.95rem;
+  padding-left: 1.2rem;
+  color: #666;
+  text-decoration: none;
 }
 
-/* CTA */
+/* CTA pinned */
+.drawer-cta {
+  margin-top: auto;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
 .drawer-cta a {
   display: block;
   width: 100%;
@@ -876,15 +892,11 @@ body {
   background: var(--taupe);
   color: white;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.05rem;
 }
 
-/* =========================
-   MOBILE ONLY RULES
-========================= */
-
+/* Mobile rules */
 @media (max-width: 768px) {
-
   .main-nav {
     display: none;
   }
@@ -893,4 +905,5 @@ body {
     display: block;
   }
 }
+
 
