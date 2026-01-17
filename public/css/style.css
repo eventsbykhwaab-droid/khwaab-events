@@ -988,17 +988,34 @@ body {
 }
 
 /* =========================
-   GOOGLE REVIEWS SECTION
+   GOOGLE REVIEWS – FINAL POLISH
 ========================= */
 
 .reviews-section {
-  padding: 5rem 5%;
-  background: #f7f3ef; /* matches site ivory */
-  text-align: center;
+  background: var(--ivory);
+  padding: 3rem 5% 3.5rem;
 }
 
-.reviews-title {
-  font-size: 2rem;
-  margin-bottom: 2.5rem;
+/* Remove Elfsight top + bottom whitespace */
+.elfsight-app-5d8b512e-7886-424e-aeca-77b9b6a0e305 {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Reduce slide height */
+.elfsight-app-5d8b512e-7886-424e-aeca-77b9b6a0e305 [class*="slider"],
+.elfsight-app-5d8b512e-7886-424e-aeca-77b9b6a0e305 [class*="carousel"] {
+  padding-bottom: 0 !important;
+}
+
+/* Tighten review cards */
+.elfsight-app-5d8b512e-7886-424e-aeca-77b9b6a0e305 [class*="review"] {
+  margin-bottom: 0 !important;
+  padding-bottom: 1rem !important;
+}
+
+/* Keep all items aligned at the top */
+.elfsight-app-5d8b512e-7886-424e-aeca-77b9b6a0e305 [class*="grid"] {
+  align-items: flex-start !important;
 }
 
