@@ -987,4 +987,18 @@ body {
   }
 }
 
+/* =========================
+   GOOGLE REVIEWS SECTION
+========================= */
+
+.reviews-section {
+  padding: 5rem 5%;
+  background: #f7f3ef; /* matches site ivory */
+  text-align: center;
+}
+
+.reviews-title {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+}
 
