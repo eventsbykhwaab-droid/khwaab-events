@@ -1,1 +1,0 @@
-Image aliases are maintained by the homepage refresh branch.
