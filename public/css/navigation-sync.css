@@ -1,0 +1,128 @@
+/* Shared internal-page navigation aligned with the homepage */
+body::before{
+  content:"Elegant event decor & styling across the GTA";
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:34px;
+  padding:0 1rem;
+  background:#eadfd3;
+  color:#40201d;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:.78rem;
+  line-height:1;
+}
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  height:auto;
+  background:rgba(255,253,249,.94);
+  border-bottom:1px solid rgba(64,32,29,.13);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.header-inner{
+  width:100%;
+  max-width:1240px;
+  height:84px;
+  margin:0 auto;
+  padding:0 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{margin:0;padding:0;transform:none}
+.logo-lockup{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.site-logo{width:76px;height:58px;object-fit:contain}
+.logo-text{font-family:Georgia,"Times New Roman",serif;font-size:1rem;letter-spacing:.08em;color:#312725}
+.main-nav{display:flex;align-items:center;gap:1.6rem;padding:0;border:0;background:transparent}
+.main-nav>a,.main-nav>.nav-dropdown>a{
+  padding:0;
+  border:0;
+  background:none;
+  color:#312725;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:.84rem;
+  font-weight:400;
+  line-height:1.2;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.main-nav>a:hover,.main-nav>a[aria-current="page"],.main-nav>.nav-dropdown>a:hover{color:#96503f}
+.main-nav .cta{
+  padding:.8rem 1rem;
+  border-radius:4px;
+  background:#b96855;
+  color:#fff;
+  font-weight:600;
+}
+.main-nav .cta:hover{background:#96503f;color:#fff}
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown::after{content:"";position:absolute;top:100%;left:0;width:100%;height:18px}
+.dropdown-menu{
+  position:absolute;
+  top:calc(100% + 18px);
+  left:50%;
+  width:210px;
+  min-width:210px;
+  padding:.55rem;
+  transform:translateX(-50%) translateY(8px);
+  border:1px solid rgba(64,32,29,.13);
+  border-radius:12px;
+  background:#fffdf9;
+  box-shadow:0 18px 44px rgba(49,39,37,.1);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .2s ease,transform .2s ease,visibility .2s ease;
+}
+.nav-dropdown:hover .dropdown-menu,.nav-dropdown:focus-within .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+}
+.dropdown-menu a{
+  display:block;
+  padding:.7rem .75rem;
+  border-radius:8px;
+  color:#312725;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:.84rem;
+  text-decoration:none;
+}
+.dropdown-menu a:hover{background:#fbf7f2;color:#96503f}
+.hamburger{display:none;width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer}
+.hamburger span{display:block;width:24px;height:2px;margin:5px auto;background:#312725}
+/* Critical: never expose the mobile drawer on desktop */
+.mobile-drawer{display:none;visibility:hidden;pointer-events:none}
+@media(max-width:980px){
+  .main-nav{display:none}
+  .hamburger{display:block}
+  .mobile-drawer{
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    display:block;
+    visibility:visible;
+    pointer-events:auto;
+    padding:1.2rem;
+    overflow-y:auto;
+    background:#fffdf9;
+    transform:translateX(100%);
+    transition:transform .25s ease;
+  }
+  .mobile-drawer.open{transform:translateX(0)}
+  .drawer-close{display:block;margin-left:auto;width:44px;height:44px;border:0;background:transparent;color:#312725;font-size:1.7rem;cursor:pointer}
+  .drawer-nav{display:grid;gap:.3rem;margin-top:1.2rem}
+  .drawer-nav>a,.drawer-nav summary{display:block;padding:1rem 0;border-bottom:1px solid rgba(64,32,29,.13);color:#312725;font-family:Georgia,"Times New Roman",serif;font-size:1.5rem;text-decoration:none;cursor:pointer}
+  .drawer-accordion>a{display:block;padding:.7rem 1rem;color:#766a65;font-family:Arial,Helvetica,sans-serif;font-size:.95rem;text-decoration:none}
+  .drawer-cta{margin-top:1rem;padding:0}
+  .drawer-cta a{display:block;padding:1rem;border-radius:4px;background:#b96855;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:.9rem;font-weight:700;text-align:center;text-decoration:none}
+}
+@media(max-width:680px){
+  body::before{justify-content:flex-start;min-height:34px;padding:0 16px;font-size:.7rem}
+  .header-inner{height:72px;padding:0 16px}
+  .site-logo{width:64px;height:48px}
+  .logo-text{display:none}
+}
+@media(prefers-reduced-motion:reduce){.dropdown-menu,.mobile-drawer{transition:none}}
