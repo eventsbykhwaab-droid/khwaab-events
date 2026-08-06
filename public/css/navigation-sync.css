@@ -56,6 +56,11 @@ body::before{
   background:#b96855;
   color:#fff;
   font-weight:600;
+  font-size:0;
+}
+.main-nav .cta::after{
+  content:"Book a Free Consultation";
+  font-size:.84rem;
 }
 .main-nav .cta:hover{background:#96503f;color:#fff}
 .nav-dropdown{position:relative;display:flex;align-items:center}
@@ -93,7 +98,6 @@ body::before{
 .dropdown-menu a:hover{background:#fbf7f2;color:#96503f}
 .hamburger{display:none;width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer}
 .hamburger span{display:block;width:24px;height:2px;margin:5px auto;background:#312725}
-/* Critical: never expose the mobile drawer on desktop */
 .mobile-drawer{display:none;visibility:hidden;pointer-events:none}
 @media(max-width:980px){
   .main-nav{display:none}
@@ -117,7 +121,8 @@ body::before{
   .drawer-nav>a,.drawer-nav summary{display:block;padding:1rem 0;border-bottom:1px solid rgba(64,32,29,.13);color:#312725;font-family:Georgia,"Times New Roman",serif;font-size:1.5rem;text-decoration:none;cursor:pointer}
   .drawer-accordion>a{display:block;padding:.7rem 1rem;color:#766a65;font-family:Arial,Helvetica,sans-serif;font-size:.95rem;text-decoration:none}
   .drawer-cta{margin-top:1rem;padding:0}
-  .drawer-cta a{display:block;padding:1rem;border-radius:4px;background:#b96855;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:.9rem;font-weight:700;text-align:center;text-decoration:none}
+  .drawer-cta a{display:block;padding:1rem;border-radius:4px;background:#b96855;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:0;font-weight:700;text-align:center;text-decoration:none}
+  .drawer-cta a::after{content:"Book a Free Consultation";font-size:.9rem}
 }
 @media(max-width:680px){
   body::before{justify-content:flex-start;min-height:34px;padding:0 16px;font-size:.7rem}
