@@ -28,10 +28,10 @@
 .announcement-social a:nth-of-type(3)::after{content:"PINTEREST"}
 .announcement-social a:nth-of-type(2)::after{content:"TIKTOK"}
 
-/* Internal pages currently render the announcement copy with body::before.
-   Add the same social labels to the right so every navigation page matches home. */
+/* Internal pages use pseudo-elements for the announcement bar.
+   Replace any inherited/generated social text with one clean, correctly spelled label. */
 body:has(.main-nav)::after{
-  content:"INSTAGRAM  ·  PINTEREST  ·  TIKTOK";
+  content:"INSTAGRAM  ·  PINTEREST  ·  TIKTOK" !important;
   position:absolute;
   top:0;
   right:4vw;
@@ -45,7 +45,14 @@ body:has(.main-nav)::after{
   font-weight:700;
   letter-spacing:.08em;
   line-height:1;
+  white-space:nowrap;
   pointer-events:none;
+}
+
+/* Hide any duplicate social label text injected inside the internal-page announcement bar. */
+body:has(.main-nav) .announcement-social::before,
+body:has(.main-nav) .announcement-social::after{
+  content:none!important;
 }
 
 /* Keep primary navigation consistent sitewide: FAQ remains available as a page,
