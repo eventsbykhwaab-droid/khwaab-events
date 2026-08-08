@@ -1,0 +1,52 @@
+/* Shared social labels for the announcement bar */
+.announcement-social{
+  display:flex;
+  align-items:center;
+  gap:0;
+}
+.announcement-social a{
+  display:inline-flex;
+  width:auto;
+  height:auto;
+  align-items:center;
+  color:#40201d;
+  text-decoration:none;
+  font-size:.62rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  line-height:1;
+  text-transform:uppercase;
+  transition:opacity .2s ease;
+}
+.announcement-social a:hover{opacity:.65;transform:none}
+.announcement-social svg{display:none!important}
+.announcement-social a:nth-of-type(1){order:1}
+.announcement-social a:nth-of-type(3){order:2}
+.announcement-social a:nth-of-type(2){order:3}
+.announcement-social a:nth-of-type(1)::after{content:"INSTAGRAM"}
+.announcement-social a:nth-of-type(3)::before,.announcement-social a:nth-of-type(2)::before{content:"·";margin:0 .55rem;color:#8f7168}
+.announcement-social a:nth-of-type(3)::after{content:"PINTEREST"}
+.announcement-social a:nth-of-type(2)::after{content:"TIKTOK"}
+
+/* Internal pages currently render the announcement copy with body::before.
+   Add the same social labels to the right so every navigation page matches home. */
+body:has(.main-nav)::after{
+  content:"INSTAGRAM  ·  PINTEREST  ·  TIKTOK";
+  position:absolute;
+  top:0;
+  right:4vw;
+  z-index:20;
+  min-height:34px;
+  display:flex;
+  align-items:center;
+  color:#40201d;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:.62rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  line-height:1;
+  pointer-events:none;
+}
+@media(max-width:680px){
+  body:has(.main-nav)::after{display:none}
+}
