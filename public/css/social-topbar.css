@@ -57,6 +57,17 @@ body:has(.main-nav)::after{
   display:none!important;
 }
 
+/* Standardize the visible footer service area copy across homepage and internal pages. */
+.site-footer .footer-grid > div:last-child > p:last-child,
+.site-footer .footer-contact-list > span:last-child{
+  font-size:0;
+}
+.site-footer .footer-grid > div:last-child > p:last-child::after,
+.site-footer .footer-contact-list > span:last-child::after{
+  content:"Mississauga & the GTA";
+  font-size:.95rem;
+}
+
 @media(max-width:680px){
   body:has(.main-nav)::after{display:none}
 }
