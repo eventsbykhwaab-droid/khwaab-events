@@ -47,6 +47,16 @@ body:has(.main-nav)::after{
   line-height:1;
   pointer-events:none;
 }
+
+/* Keep primary navigation consistent sitewide: FAQ remains available as a page,
+   but is intentionally removed from desktop and mobile navigation menus. */
+.desktop-nav a[href="/faq.html"],
+.mobile-menu nav a[href="/faq.html"],
+.main-nav a[href="/faq.html"],
+.drawer-nav a[href="/faq.html"]{
+  display:none!important;
+}
+
 @media(max-width:680px){
   body:has(.main-nav)::after{display:none}
 }
