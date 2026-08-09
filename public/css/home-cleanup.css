@@ -1,0 +1,94 @@
+/* Homepage cleanup — deliberately isolated for easy rollback. */
+
+/* Softer canvas so the transition out of the warm hero is less abrupt. */
+:root{
+  --paper:#f7f2eb;
+  --ivory:#f4eee6;
+}
+body{background:var(--paper)}
+
+/* Remove the announcement strip while keeping its social anchors reusable. */
+.announcement{
+  min-height:0!important;
+  height:0!important;
+  padding:0!important;
+  background:transparent!important;
+  overflow:visible!important;
+}
+.announcement>p{display:none!important}
+
+/* Put the confirmed social accounts into the desktop navigation area as icons. */
+.announcement-social{
+  position:absolute!important;
+  top:35px!important;
+  right:max(22px,calc((100vw - 1320px)/2 + 22px))!important;
+  z-index:1250!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:.7rem!important;
+}
+.announcement-social a{
+  display:inline-flex!important;
+  width:20px!important;
+  height:20px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#fff!important;
+  opacity:.9;
+  text-decoration:none;
+}
+.announcement-social a:hover{opacity:1;transform:translateY(-1px)}
+.announcement-social svg{display:block!important;width:17px!important;height:17px!important}
+.announcement-social a::before,.announcement-social a::after{content:none!important}
+.announcement-social a:nth-of-type(1){order:1}
+.announcement-social a:nth-of-type(3){order:2}
+.announcement-social a:nth-of-type(2){order:3}
+
+/* Reserve space for the social icons and remove the decorative package chevron. */
+@media(min-width:981px){
+  body:has(.hero) .site-header{top:0!important}
+  body:has(.hero) .header-inner{padding-right:118px}
+  body:has(.hero) .desktop-nav{gap:1.35rem}
+  body:has(.hero) .nav-dropdown button span{display:none!important}
+  body:has(.hero) .hero{min-height:100svh!important}
+}
+
+/* REVERSIBLE HOMEPAGE TOGGLES
+   Remove either selector below to restore that section immediately. */
+.celebration-section,
+.packages-section{display:none!important}
+
+/* Keep the remaining homepage sections on one warm visual canvas. */
+.trust-row,.process-section,.reviews-section{background:var(--paper)}
+.review-grid blockquote{background:var(--ivory)}
+
+/* Mobile UX: compact header, cleaner hero and larger tap targets. */
+@media(max-width:980px){
+  .announcement-social{display:none!important}
+  body.menu-open .announcement-social{
+    display:flex!important;
+    position:fixed!important;
+    top:auto!important;
+    right:auto!important;
+    left:20px!important;
+    bottom:28px!important;
+    z-index:2200!important;
+  }
+  body.menu-open .announcement-social a{color:var(--maroon)!important;width:28px!important;height:28px!important}
+  body.menu-open .announcement-social svg{width:20px!important;height:20px!important}
+  .site-header{top:0!important}
+  .menu-button{width:48px;height:48px}
+  .mobile-menu{padding-bottom:82px}
+  .mobile-menu nav>a,.mobile-menu summary{min-height:52px;display:flex;align-items:center}
+  .mobile-menu details a{min-height:44px;display:flex;align-items:center}
+  .hero{min-height:720px!important}
+  .hero-copy{padding-top:6.5rem!important}
+}
+@media(max-width:680px){
+  .hero{min-height:640px!important}
+  .hero-copy{padding:5.5rem 20px 3.1rem!important}
+  .hero h1{font-size:clamp(2.75rem,13vw,4.1rem)!important;line-height:.98}
+  .hero p{font-size:.98rem}
+  .trust-row{padding-top:1.1rem;padding-bottom:1.1rem}
+  .process-section{padding-top:4rem;padding-bottom:4rem}
+}
