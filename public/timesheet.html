@@ -6,11 +6,11 @@
   <meta name="robots" content="noindex,nofollow" />
   <title>Khwaab Events | Employee Timesheet</title>
   <style>
-    :root{--bg:#f8f6f2;--card:#fff;--text:#241f1b;--muted:#746b63;--line:#e8e0d8;--accent:#6e5444;--accent2:#f0e8df;--ok:#eef5ef}
-    *{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+    :root{--bg:#f8f6f2;--card:#fff;--text:#241f1b;--muted:#746b63;--line:#e8e0d8;--accent:#6e5444;--accent2:#f0e8df}
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
     .wrap{max-width:680px;margin:0 auto;padding:24px 16px 48px}.brand{text-align:center;margin-bottom:22px}.brand h1{font-size:24px;margin:5px 0}.brand p{margin:0;color:var(--muted);font-size:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 5px 18px rgba(0,0,0,.035)}
-    h2{font-size:16px;margin:0 0 14px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.full{grid-column:1/-1}label{display:block;font-size:13px;font-weight:600;margin:0 0 6px}.hint{font-size:12px;color:var(--muted);font-weight:400}.field input,.field select{width:100%;height:46px;border:1px solid var(--line);border-radius:10px;background:#fff;padding:0 12px;font-size:16px;color:var(--text)}
-    .summary{background:var(--accent2);border-radius:14px;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{background:#fff;border-radius:10px;padding:12px}.metric span{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}.metric strong{font-size:18px}.total{grid-column:1/-1}.total strong{font-size:22px}.btn{width:100%;height:52px;border:0;border-radius:12px;background:var(--accent);color:#fff;font-size:16px;font-weight:700;cursor:pointer}.btn:disabled{opacity:.6}.note{font-size:12px;color:var(--muted);line-height:1.45;margin-top:10px;text-align:center}.req{color:#9f533f}
+    h2{font-size:16px;margin:0 0 14px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.full{grid-column:1/-1}label{display:block;font-size:13px;font-weight:600;margin:0 0 6px}.field input,.field select{width:100%;height:46px;border:1px solid var(--line);border-radius:10px;background:#fff;padding:0 12px;font-size:16px;color:var(--text)}
+    input[type="time"]{font-variant-numeric:tabular-nums}.summary{background:var(--accent2);border-radius:14px;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{background:#fff;border-radius:10px;padding:12px}.metric span{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}.metric strong{font-size:18px}.total{grid-column:1/-1}.total strong{font-size:22px}.btn{width:100%;height:52px;border:0;border-radius:12px;background:var(--accent);color:#fff;font-size:16px;font-weight:700;cursor:pointer}.note{font-size:12px;color:var(--muted);line-height:1.45;margin-top:10px;text-align:center}.req{color:#9f533f}
     @media(max-width:520px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.summary{grid-template-columns:1fr 1fr}}
   </style>
 </head>
@@ -38,17 +38,17 @@
     </div></div>
 
     <div class="card"><h2>Setup</h2><div class="grid">
-      <div class="field"><label>Started travel <span class="req">*</span></label><input name="Setup - Started Travel" type="time" required /></div>
-      <div class="field"><label>Started setup <span class="req">*</span></label><input id="setupStart" name="Setup - Started" type="time" required /></div>
-      <div class="field"><label>Finished setup <span class="req">*</span></label><input id="setupEnd" name="Setup - Finished" type="time" required /></div>
-      <div class="field"><label>Reached home after setup</label><input name="Setup - Reached Home" type="time" /></div>
+      <div class="field"><label>Started travel <span class="req">*</span></label><input name="Setup - Started Travel" type="time" step="60" required /></div>
+      <div class="field"><label>Started setup <span class="req">*</span></label><input id="setupStart" name="Setup - Started" type="time" step="60" required /></div>
+      <div class="field"><label>Finished setup <span class="req">*</span></label><input id="setupEnd" name="Setup - Finished" type="time" step="60" required /></div>
+      <div class="field"><label>Reached home after setup</label><input name="Setup - Reached Home" type="time" step="60" /></div>
     </div></div>
 
     <div class="card"><h2>Takedown</h2><div class="grid">
-      <div class="field"><label>Started travel to takedown</label><input name="Takedown - Started Travel" type="time" /></div>
-      <div class="field"><label>Started takedown</label><input id="takedownStart" name="Takedown - Started" type="time" /></div>
-      <div class="field"><label>Finished takedown</label><input id="takedownEnd" name="Takedown - Finished" type="time" /></div>
-      <div class="field"><label>Reached home</label><input name="Takedown - Reached Home" type="time" /></div>
+      <div class="field"><label>Started travel to takedown</label><input name="Takedown - Started Travel" type="time" step="60" /></div>
+      <div class="field"><label>Started takedown</label><input id="takedownStart" name="Takedown - Started" type="time" step="60" /></div>
+      <div class="field"><label>Finished takedown</label><input id="takedownEnd" name="Takedown - Finished" type="time" step="60" /></div>
+      <div class="field"><label>Reached home</label><input name="Takedown - Reached Home" type="time" step="60" /></div>
     </div></div>
 
     <div class="card"><h2>Pay summary</h2><div class="summary">
@@ -66,19 +66,59 @@
 <script>
 (function(){
   const $=id=>document.getElementById(id);
-  const date=$('date'); if(date&&!date.value){const d=new Date();const local=new Date(d.getTime()-d.getTimezoneOffset()*60000);date.value=local.toISOString().slice(0,10)}
-  function mins(v){if(!v)return null;const [h,m]=v.split(':').map(Number);return h*60+m}
-  function duration(a,b){const s=mins(a),e=mins(b);if(s===null||e===null)return 0;let diff=e-s;if(diff<0)diff+=1440;return diff/60}
+  const date=$('date');
+  if(date&&!date.value){const d=new Date();const local=new Date(d.getTime()-d.getTimezoneOffset()*60000);date.value=local.toISOString().slice(0,10)}
+
+  function mins(v){
+    if(!v)return null;
+    const parts=v.split(':');
+    if(parts.length<2)return null;
+    const h=Number(parts[0]),m=Number(parts[1]);
+    if(!Number.isFinite(h)||!Number.isFinite(m))return null;
+    return h*60+m;
+  }
+  function duration(a,b){
+    const s=mins(a),e=mins(b);
+    if(s===null||e===null)return 0;
+    let diff=e-s;
+    if(diff<0)diff+=1440;
+    return diff/60;
+  }
   function money(n){return '$'+n.toFixed(2)}
   function calc(){
     const sh=duration($('setupStart').value,$('setupEnd').value);
     const th=duration($('takedownStart').value,$('takedownEnd').value);
-    const paid=sh+th, labour=paid*20, travel=$('travelOutside').value==='Yes'?40:0, total=labour+travel;
-    $('setupHours').textContent=sh.toFixed(2)+' h'; $('takedownHours').textContent=th.toFixed(2)+' h'; $('paidHours').textContent=paid.toFixed(2)+' h'; $('travelPay').textContent='$'+travel; $('totalPay').textContent=money(total);
-    $('setupHoursHidden').value=sh.toFixed(2); $('takedownHoursHidden').value=th.toFixed(2); $('paidHoursHidden').value=paid.toFixed(2); $('labourPayHidden').value=money(labour); $('travelPayHidden').value='$'+travel.toFixed(2); $('totalPayHidden').value=money(total);
+    const paid=sh+th;
+    const labour=paid*20;
+    const travel=$('travelOutside').value==='Yes'?40:0;
+    const total=labour+travel;
+
+    $('setupHours').textContent=sh.toFixed(2)+' h';
+    $('takedownHours').textContent=th.toFixed(2)+' h';
+    $('paidHours').textContent=paid.toFixed(2)+' h';
+    $('travelPay').textContent='$'+travel;
+    $('totalPay').textContent=money(total);
+
+    $('setupHoursHidden').value=sh.toFixed(2);
+    $('takedownHoursHidden').value=th.toFixed(2);
+    $('paidHoursHidden').value=paid.toFixed(2);
+    $('labourPayHidden').value=money(labour);
+    $('travelPayHidden').value='$'+travel.toFixed(2);
+    $('totalPayHidden').value=money(total);
   }
-  ['setupStart','setupEnd','takedownStart','takedownEnd','travelOutside'].forEach(id=>$(id).addEventListener('change',calc));calc();
-  $('timesheet').addEventListener('submit',calc);
+
+  ['setupStart','setupEnd','takedownStart','takedownEnd','travelOutside'].forEach(id=>{
+    const el=$(id);
+    el.addEventListener('input',calc);
+    el.addEventListener('change',calc);
+  });
+
+  document.querySelectorAll('input[type="time"]').forEach(el=>{
+    el.setAttribute('step','60');
+  });
+
+  $('timesheet').addEventListener('submit',function(){calc()});
+  calc();
 })();
 </script>
 </body>
