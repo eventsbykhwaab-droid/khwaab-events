@@ -28,8 +28,7 @@
 .announcement-social a:nth-of-type(3)::after{content:"PINTEREST"}
 .announcement-social a:nth-of-type(2)::after{content:"TIKTOK"}
 
-/* Internal pages use pseudo-elements for the announcement bar.
-   Replace inherited/generated social text with one clean, correctly spelled label. */
+/* Internal pages use pseudo-elements for the announcement bar. */
 body:has(.main-nav)::after{
   content:"INSTAGRAM  ·  PINTEREST  ·  TIKTOK" !important;
   position:absolute;
@@ -54,8 +53,6 @@ body:has(.main-nav) .announcement-social::after{
   content:none!important;
 }
 
-/* Keep primary navigation consistent sitewide: FAQ remains available as a page,
-   but is intentionally removed from desktop and mobile navigation menus. */
 .desktop-nav a[href="/faq.html"],
 .mobile-menu nav a[href="/faq.html"],
 .main-nav a[href="/faq.html"],
@@ -63,7 +60,6 @@ body:has(.main-nav) .announcement-social::after{
   display:none!important;
 }
 
-/* Standardize the visible footer service area copy across homepage and internal pages. */
 .site-footer .footer-grid > div:last-child > p:last-child,
 .site-footer .footer-contact-list > span:last-child{
   font-size:0;
@@ -76,4 +72,37 @@ body:has(.main-nav) .announcement-social::after{
 
 @media(max-width:680px){
   body:has(.main-nav)::after{display:none}
+
+  /* Mobile announcement bar: icons only, centered, no overlap. */
+  .announcement{
+    min-height:34px;
+    justify-content:center!important;
+    padding:0 12px!important;
+  }
+  .announcement > p{display:none!important}
+  .announcement-social{
+    position:static!important;
+    display:flex!important;
+    align-items:center;
+    justify-content:center;
+    gap:1rem!important;
+    width:auto;
+  }
+  .announcement-social a{
+    width:20px!important;
+    height:20px!important;
+    padding:0!important;
+    font-size:0!important;
+    line-height:0!important;
+  }
+  .announcement-social a::before,
+  .announcement-social a::after{
+    content:none!important;
+    display:none!important;
+  }
+  .announcement-social svg{
+    display:block!important;
+    width:16px!important;
+    height:16px!important;
+  }
 }
