@@ -26,13 +26,13 @@
 
 .brand span::before,
 .logo-lockup .logo-text::before{
-  content:"K H W A A B   E V E N T S";
+  content:"K H W A A B";
   display:block;
   font-family:Georgia,"Times New Roman",serif;
   font-size:1.02rem;
   font-weight:500;
   line-height:1;
-  letter-spacing:.2em;
+  letter-spacing:.22em;
   text-transform:uppercase;
   white-space:nowrap;
   color:#40201d;
@@ -40,13 +40,27 @@
 
 .brand span::after,
 .logo-lockup .logo-text::after{
-  content:none!important;
+  content:"E V E N T S";
+  display:block!important;
+  margin-left:1rem;
+  padding-left:1rem;
+  border-left:1px solid #c9a77c;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:.78rem;
+  font-weight:500;
+  line-height:1;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  color:#40201d;
 }
 
-/* On the transparent home hero header, keep the editorial mark light. */
 .hero .brand span::before,
+.hero .brand span::after,
 .home-hero .brand span::before,
-body.home .brand span::before{
+.home-hero .brand span::after,
+body.home .brand span::before,
+body.home .brand span::after{
   color:inherit;
 }
 
@@ -54,15 +68,36 @@ body.home .brand span::before{
   .brand span::before,
   .logo-lockup .logo-text::before{
     font-size:.92rem;
-    letter-spacing:.17em;
+    letter-spacing:.18em;
+  }
+  .brand span::after,
+  .logo-lockup .logo-text::after{
+    margin-left:.75rem;
+    padding-left:.75rem;
+    font-size:.7rem;
+    letter-spacing:.24em;
   }
 }
 
 @media(max-width:680px){
+  .brand span,
+  .logo-lockup .logo-text{
+    transform:scale(.92);
+    transform-origin:left center;
+  }
   .brand span::before,
   .logo-lockup .logo-text::before{
     content:"K H W A A B";
-    font-size:.88rem!important;
-    letter-spacing:.2em!important;
+    font-size:.82rem!important;
+    letter-spacing:.17em!important;
+  }
+  .brand span::after,
+  .logo-lockup .logo-text::after{
+    content:"E V E N T S";
+    margin-left:.55rem;
+    padding-left:.55rem;
+    border-left:1px solid #c9a77c;
+    font-size:.58rem!important;
+    letter-spacing:.19em!important;
   }
 }
