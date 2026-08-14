@@ -1,0 +1,39 @@
+/* Contact page responsive stabilization */
+body.contact-page{overflow-x:hidden;background:#fffdf9}
+body.contact-page main{width:100%;overflow:hidden}
+body.contact-page .secondary-hero{width:min(100%,900px);padding-top:5.5rem}
+body.contact-page .contact-options,
+body.contact-page .container{width:min(100%,1180px);margin-inline:auto}
+body.contact-page .contact-option-card,
+body.contact-page .prep-panel{min-width:0}
+body.contact-page .contact-option-card p,
+body.contact-page .prep-panel,
+body.contact-page .prep-grid span{overflow-wrap:anywhere}
+body.contact-page .btn{max-width:100%;white-space:normal;text-align:center}
+
+@media(max-width:980px){
+  body.contact-page .mobile-drawer{right:0;left:0;width:100%;max-width:100vw}
+}
+
+@media(max-width:680px){
+  body.contact-page .secondary-hero{padding:3.6rem 20px 2.5rem;text-align:left}
+  body.contact-page .secondary-hero .section-kicker{margin-bottom:.65rem}
+  body.contact-page .secondary-hero h1{font-size:clamp(2.35rem,11.5vw,3.45rem);line-height:1.02;letter-spacing:-.04em;margin-bottom:1rem}
+  body.contact-page .secondary-hero p{font-size:.98rem;line-height:1.65;margin:0}
+  body.contact-page .contact-options{grid-template-columns:1fr!important;gap:.9rem;padding:0 16px 2rem}
+  body.contact-page .contact-option-card{padding:1.35rem;border-radius:14px}
+  body.contact-page .contact-option-card h2{font-size:1.7rem}
+  body.contact-page .contact-option-card .btn{display:flex;width:100%;min-height:48px;align-items:center;justify-content:center}
+  body.contact-page .container{padding-left:16px;padding-right:16px;padding-top:1.25rem;padding-bottom:3rem}
+  body.contact-page .prep-panel{padding:1.35rem;text-align:left;border-radius:14px}
+  body.contact-page .prep-grid{grid-template-columns:1fr 1fr!important;gap:.55rem}
+  body.contact-page .prep-grid span{padding:.78rem .7rem;font-size:.86rem;text-align:center}
+  body.contact-page .footer-grid{grid-template-columns:1fr!important}
+  body.contact-page .drawer-nav>a,
+  body.contact-page .drawer-nav summary{font-family:Arial,Helvetica,sans-serif;font-size:.94rem;padding:.82rem 0}
+  body.contact-page .drawer-close{font-size:1.45rem;width:40px;height:40px}
+}
+
+@media(max-width:390px){
+  body.contact-page .prep-grid{grid-template-columns:1fr!important}
+}
