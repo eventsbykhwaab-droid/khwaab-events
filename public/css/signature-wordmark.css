@@ -1,4 +1,4 @@
-/* Premium signature wordmark shared across homepage + internal pages */
+/* Editorial spaced wordmark shared across homepage + internal pages */
 .brand img,
 .logo-lockup .site-logo,
 .logo img.site-logo{
@@ -16,11 +16,9 @@
 .brand span,
 .logo-lockup .logo-text{
   position:relative;
-  display:inline-grid!important;
-  grid-template-rows:auto auto;
+  display:inline-flex!important;
   align-items:center;
-  justify-items:start;
-  min-width:150px;
+  min-width:max-content;
   font-size:0!important;
   line-height:1;
   color:#40201d;
@@ -28,62 +26,43 @@
 
 .brand span::before,
 .logo-lockup .logo-text::before{
-  content:"Khwaab";
+  content:"K H W A A B   E V E N T S";
   display:block;
-  font-family:"Snell Roundhand","Apple Chancery","Segoe Script","Brush Script MT",cursive;
-  font-size:2rem;
-  font-weight:400;
-  line-height:.9;
-  letter-spacing:.005em;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;
+  font-weight:500;
+  line-height:1;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  white-space:nowrap;
   color:#40201d;
-  transform:rotate(-1deg);
 }
 
 .brand span::after,
 .logo-lockup .logo-text::after{
-  content:"E V E N T S";
-  display:block;
-  margin-top:.32rem;
-  padding-left:.14rem;
-  font-family:Arial,Helvetica,sans-serif;
-  font-size:.52rem;
-  font-weight:600;
-  line-height:1;
-  letter-spacing:.22em;
-  color:#8f5c50;
+  content:none!important;
+}
+
+/* On the transparent home hero header, keep the editorial mark light. */
+.hero .brand span::before,
+.home-hero .brand span::before,
+body.home .brand span::before{
+  color:inherit;
 }
 
 @media(max-width:980px){
-  .brand span,
-  .logo-lockup .logo-text{
-    min-width:132px;
-  }
   .brand span::before,
   .logo-lockup .logo-text::before{
-    font-size:1.72rem;
-  }
-  .brand span::after,
-  .logo-lockup .logo-text::after{
-    margin-top:.28rem;
-    font-size:.46rem;
-    letter-spacing:.2em;
+    font-size:.92rem;
+    letter-spacing:.17em;
   }
 }
 
 @media(max-width:680px){
-  .brand span,
-  .logo-lockup .logo-text{
-    min-width:124px!important;
-  }
   .brand span::before,
   .logo-lockup .logo-text::before{
-    font-size:1.58rem!important;
-    line-height:.88;
-  }
-  .brand span::after,
-  .logo-lockup .logo-text::after{
-    margin-top:.25rem;
-    font-size:.42rem!important;
-    letter-spacing:.19em!important;
+    content:"K H W A A B";
+    font-size:.88rem!important;
+    letter-spacing:.2em!important;
   }
 }
