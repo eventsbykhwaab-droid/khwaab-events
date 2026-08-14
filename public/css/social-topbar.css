@@ -73,11 +73,11 @@ body:has(.main-nav) .announcement-social::after{
 @media(max-width:680px){
   body:has(.main-nav)::after{display:none}
 
-  /* Mobile announcement bar: icons only, centered, no overlap. */
+  /* Match the homepage announcement bar on mobile as well. */
   .announcement{
     min-height:34px;
     justify-content:center!important;
-    padding:0 12px!important;
+    padding:0 10px!important;
   }
   .announcement > p{display:none!important}
   .announcement-social{
@@ -85,24 +85,22 @@ body:has(.main-nav) .announcement-social::after{
     display:flex!important;
     align-items:center;
     justify-content:center;
-    gap:1rem!important;
-    width:auto;
+    gap:0!important;
+    width:100%;
   }
   .announcement-social a{
-    width:20px!important;
-    height:20px!important;
+    width:auto!important;
+    height:auto!important;
     padding:0!important;
-    font-size:0!important;
-    line-height:0!important;
+    font-size:.56rem!important;
+    letter-spacing:.055em!important;
+    line-height:1!important;
+    white-space:nowrap;
   }
-  .announcement-social a::before,
-  .announcement-social a::after{
-    content:none!important;
-    display:none!important;
-  }
-  .announcement-social svg{
-    display:block!important;
-    width:16px!important;
-    height:16px!important;
-  }
+  .announcement-social svg{display:none!important}
+  .announcement-social a:nth-of-type(1)::after{content:"INSTAGRAM"!important;display:inline!important}
+  .announcement-social a:nth-of-type(3)::before,
+  .announcement-social a:nth-of-type(2)::before{content:"·"!important;display:inline!important;margin:0 .42rem!important;color:#8f7168}
+  .announcement-social a:nth-of-type(3)::after{content:"PINTEREST"!important;display:inline!important}
+  .announcement-social a:nth-of-type(2)::after{content:"TIKTOK"!important;display:inline!important}
 }
