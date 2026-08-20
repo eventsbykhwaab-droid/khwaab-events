@@ -40,15 +40,15 @@
   color:#40201d!important;
 }
 
-/* Divider + EVENTS — kept separate so spacing cannot collapse */
+/* EVENTS — separated with whitespace only */
 .brand span::after,
 .logo-lockup .logo-text::after{
   content:"E V E N T S";
   display:block!important;
   flex:none;
-  margin-left:1.15rem!important;
-  padding-left:1.15rem!important;
-  border-left:1px solid #c9a77c!important;
+  margin-left:2rem!important;
+  padding-left:0!important;
+  border-left:0!important;
   font-family:Georgia,"Times New Roman",serif;
   font-size:.78rem!important;
   font-weight:500;
@@ -64,9 +64,6 @@ body:has(.hero) .site-header .brand span::before,
 body:has(.hero) .site-header .brand span::after{
   color:#fffaf5!important;
   text-shadow:0 1px 12px rgba(20,10,8,.35);
-}
-body:has(.hero) .site-header .brand span::after{
-  border-left-color:rgba(255,238,218,.72)!important;
 }
 
 /* Internal pages stay in Khwaab maroon on the light navigation background. */
@@ -85,8 +82,9 @@ body:not(:has(.hero)) .logo-lockup .logo-text::after{
   }
   .brand span::after,
   .logo-lockup .logo-text::after{
-    margin-left:.85rem!important;
-    padding-left:.85rem!important;
+    margin-left:1.5rem!important;
+    padding-left:0!important;
+    border-left:0!important;
     font-size:.7rem!important;
     letter-spacing:.24em!important;
   }
@@ -105,8 +103,9 @@ body:not(:has(.hero)) .logo-lockup .logo-text::after{
   }
   .brand span::after,
   .logo-lockup .logo-text::after{
-    margin-left:.68rem!important;
-    padding-left:.68rem!important;
+    margin-left:1.1rem!important;
+    padding-left:0!important;
+    border-left:0!important;
     font-size:.58rem!important;
     letter-spacing:.19em!important;
   }
