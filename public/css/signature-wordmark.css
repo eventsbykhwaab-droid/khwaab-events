@@ -8,7 +8,7 @@
 .brand,
 .logo-lockup{
   display:inline-flex!important;
-  align-items:center;
+  align-items:center!important;
   min-width:max-content;
   text-decoration:none!important;
 }
@@ -17,86 +17,96 @@
 .logo-lockup .logo-text{
   position:relative;
   display:inline-flex!important;
-  align-items:center;
+  align-items:center!important;
   min-width:max-content;
   font-size:0!important;
   line-height:1;
   color:#40201d;
 }
 
+/* KHWAAB */
 .brand span::before,
 .logo-lockup .logo-text::before{
   content:"K H W A A B";
-  display:block;
+  display:block!important;
+  flex:none;
   font-family:Georgia,"Times New Roman",serif;
-  font-size:1.02rem;
+  font-size:1.02rem!important;
   font-weight:500;
   line-height:1;
-  letter-spacing:.22em;
+  letter-spacing:.22em!important;
   text-transform:uppercase;
   white-space:nowrap;
-  color:#40201d;
+  color:#40201d!important;
 }
 
+/* Divider + EVENTS — kept separate so spacing cannot collapse */
 .brand span::after,
 .logo-lockup .logo-text::after{
   content:"E V E N T S";
   display:block!important;
-  margin-left:1rem;
-  padding-left:1rem;
-  border-left:1px solid #c9a77c;
+  flex:none;
+  margin-left:1.15rem!important;
+  padding-left:1.15rem!important;
+  border-left:1px solid #c9a77c!important;
   font-family:Georgia,"Times New Roman",serif;
-  font-size:.78rem;
+  font-size:.78rem!important;
   font-weight:500;
   line-height:1;
-  letter-spacing:.3em;
+  letter-spacing:.3em!important;
   text-transform:uppercase;
   white-space:nowrap;
-  color:#40201d;
+  color:#40201d!important;
 }
 
-.hero .brand span::before,
-.hero .brand span::after,
-.home-hero .brand span::before,
-.home-hero .brand span::after,
-body.home .brand span::before,
-body.home .brand span::after{
-  color:inherit;
+/* Homepage header sits on a dark photographic hero: use a high-contrast ivory wordmark. */
+body:has(.hero) .site-header .brand span::before,
+body:has(.hero) .site-header .brand span::after{
+  color:#fffaf5!important;
+  text-shadow:0 1px 12px rgba(20,10,8,.35);
+}
+body:has(.hero) .site-header .brand span::after{
+  border-left-color:rgba(255,238,218,.72)!important;
+}
+
+/* Internal pages stay in Khwaab maroon on the light navigation background. */
+body:not(:has(.hero)) .brand span::before,
+body:not(:has(.hero)) .brand span::after,
+body:not(:has(.hero)) .logo-lockup .logo-text::before,
+body:not(:has(.hero)) .logo-lockup .logo-text::after{
+  color:#40201d!important;
 }
 
 @media(max-width:980px){
   .brand span::before,
   .logo-lockup .logo-text::before{
-    font-size:.92rem;
-    letter-spacing:.18em;
+    font-size:.92rem!important;
+    letter-spacing:.18em!important;
   }
   .brand span::after,
   .logo-lockup .logo-text::after{
-    margin-left:.75rem;
-    padding-left:.75rem;
-    font-size:.7rem;
-    letter-spacing:.24em;
+    margin-left:.85rem!important;
+    padding-left:.85rem!important;
+    font-size:.7rem!important;
+    letter-spacing:.24em!important;
   }
 }
 
 @media(max-width:680px){
   .brand span,
   .logo-lockup .logo-text{
-    transform:scale(.92);
+    transform:scale(.9);
     transform-origin:left center;
   }
   .brand span::before,
   .logo-lockup .logo-text::before{
-    content:"K H W A A B";
     font-size:.82rem!important;
     letter-spacing:.17em!important;
   }
   .brand span::after,
   .logo-lockup .logo-text::after{
-    content:"E V E N T S";
-    margin-left:.55rem;
-    padding-left:.55rem;
-    border-left:1px solid #c9a77c;
+    margin-left:.68rem!important;
+    padding-left:.68rem!important;
     font-size:.58rem!important;
     letter-spacing:.19em!important;
   }
