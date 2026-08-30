@@ -59,11 +59,18 @@
   color:#40201d!important;
 }
 
-/* Homepage header sits on a dark photographic hero: use a high-contrast ivory wordmark. */
-body:has(.hero) .site-header .brand span::before,
-body:has(.hero) .site-header .brand span::after{
+/* Homepage navigation overlays the dark hero. Match the other nav text in ivory. */
+body.home .site-header .brand span::before,
+body.home .site-header .brand span::after,
+body.home .hero .brand span::before,
+body.home .hero .brand span::after,
+body:has(.hero) header .brand span::before,
+body:has(.hero) header .brand span::after,
+body:has(.hero) .brand span::before,
+body:has(.hero) .brand span::after{
   color:#fffaf5!important;
-  text-shadow:0 1px 12px rgba(20,10,8,.35);
+  -webkit-text-fill-color:#fffaf5!important;
+  text-shadow:0 1px 10px rgba(20,10,8,.24);
 }
 
 /* Internal pages stay in Khwaab maroon on the light navigation background. */
@@ -72,6 +79,7 @@ body:not(:has(.hero)) .brand span::after,
 body:not(:has(.hero)) .logo-lockup .logo-text::before,
 body:not(:has(.hero)) .logo-lockup .logo-text::after{
   color:#40201d!important;
+  -webkit-text-fill-color:#40201d!important;
 }
 
 @media(max-width:980px){
