@@ -26,7 +26,15 @@
 
   function createFilters(events) {
     const categories = [...new Set(events.map((event) => event.event_type))];
-    filterRoot.innerHTML = ['All', ...categories].map((label, index) => `<button class="gallery-filter${index === 0 ? ' active' : ''}" data-filter="${index === 0 ? 'all' : keyFor(label)}">${label}</button>`).join('');
+    filterRoot.replaceChildren();
+    ['All', ...categories].forEach((label, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = `gallery-filter${index === 0 ? ' active' : ''}`;
+      button.dataset.filter = index === 0 ? 'all' : keyFor(label);
+      button.textContent = label;
+      filterRoot.appendChild(button);
+    });
     filterRoot.querySelectorAll('.gallery-filter').forEach((button) => button.addEventListener('click', () => {
       filterRoot.querySelectorAll('.gallery-filter').forEach((item) => item.classList.toggle('active', item === button));
       renderEvents(button.dataset.filter);
@@ -35,18 +43,59 @@
 
   function renderEvents(filter = 'all') {
     const visible = allEvents.filter((event) => filter === 'all' || keyFor(event.event_type) === filter);
-    eventGrid.innerHTML = '';
+    eventGrid.replaceChildren();
     visible.forEach((event, index) => {
-      const cover = coverFor(event);
-      if (!cover) return;
-      const card = document.createElement('button');
-      card.className = `portfolio-event-card shape-${index % 6}`;
-      card.type = 'button';
-      card.innerHTML = `<img src="${optimized(cover.secure_url)}" alt="${cover.alt_text || event.title}" loading="lazy"><span class="portfolio-event-overlay"><span class="portfolio-event-type">${event.event_type}</span><strong>${event.title}</strong>${event.location ? `<span>${event.location}</span>` : ''}</span>`;
-      card.addEventListener('click', () => openEvent(event));
-      eventGrid.appendChild(card);
+      const images = sortedImages(event);
+      if (!images.length) return;
+      const section = document.createElement('section');
+      section.className = 'portfolio-story';
+      const heading = document.createElement('div');
+      heading.className = 'portfolio-story-heading';
+      const details = document.createElement('div');
+      const type = document.createElement('span');
+      type.className = 'portfolio-story-type';
+      type.textContent = event.event_type;
+      const title = document.createElement('h2');
+      title.textContent = event.title;
+      details.append(type, title);
+      heading.appendChild(details);
+      if (event.location) {
+        const location = document.createElement('span');
+        location.className = 'portfolio-story-location';
+        location.textContent = event.location;
+        heading.appendChild(location);
+      }
+      section.appendChild(heading);
 
-      if ((index + 1) % 5 === 0 && index < visible.length - 1) {
+      // Keep the editor's photo order; alternating pairs and trios avoid a lone oversized card.
+      for (let start = 0; start < images.length;) {
+        const remaining = images.length - start;
+        const count = remaining === 3 || remaining === 6 || (remaining >= 5 && start % 5 === 2) ? 3 : Math.min(2, remaining);
+        const row = document.createElement('div');
+        row.className = `portfolio-photo-row portfolio-photo-row--${count}`;
+        images.slice(start, start + count).forEach((photo, offset) => {
+          const tile = document.createElement('button');
+          tile.className = 'portfolio-photo-tile';
+          tile.type = 'button';
+          tile.setAttribute('aria-label', `View photo ${start + offset + 1} of ${images.length} from ${event.title}`);
+          const img = document.createElement('img');
+          img.src = optimized(photo.secure_url, 900);
+          img.srcset = [420, 700, 900, 1200].map((width) => `${optimized(photo.secure_url, width)} ${width}w`).join(', ');
+          img.sizes = count === 3 ? '(max-width: 640px) 50vw, 33vw' : '(max-width: 640px) 50vw, 50vw';
+          img.alt = photo.alt_text || `${event.title} event decor`;
+          img.loading = index === 0 && start === 0 && offset === 0 ? 'eager' : 'lazy';
+          img.decoding = 'async';
+          if (photo.width && photo.height) { img.width = photo.width; img.height = photo.height; }
+          tile.appendChild(img);
+          tile.addEventListener('click', () => openEvent(event, start + offset));
+          row.appendChild(tile);
+        });
+        section.appendChild(row);
+        start += count;
+      }
+      eventGrid.appendChild(section);
+
+      if ((index + 1) % 3 === 0 && index < visible.length - 1) {
         const cta = document.createElement('a');
         cta.className = 'portfolio-inline-cta';
         cta.href = '/contact.html';
@@ -56,10 +105,10 @@
     });
   }
 
-  function openEvent(event) {
+  function openEvent(event, startIndex = 0) {
     activeEvent = event;
     activeImages = sortedImages(event);
-    imageIndex = 0;
+    imageIndex = startIndex;
     showImage();
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
@@ -119,7 +168,13 @@
       createFilters(allEvents);
       renderEvents();
       const firstCover = coverFor(allEvents[0]);
-      if (firstCover && heroImage) { heroImage.src = optimized(firstCover.secure_url, 1800); heroImage.alt = firstCover.alt_text || allEvents[0].title; }
+      if (firstCover && heroImage) {
+        heroImage.src = optimized(firstCover.secure_url, 900);
+        heroImage.srcset = [420, 700, 900, 1200].map((width) => `${optimized(firstCover.secure_url, width)} ${width}w`).join(', ');
+        heroImage.sizes = '(max-width: 980px) 100vw, 42vw';
+        heroImage.alt = firstCover.alt_text || allEvents[0].title;
+        document.querySelector('.portfolio-hero-image').addEventListener('click', () => openEvent(allEvents[0], sortedImages(allEvents[0]).findIndex((image) => image.id === firstCover.id)));
+      }
       fallback.hidden = true;
       dynamicSection.hidden = false;
     })
