@@ -116,3 +116,11 @@
   .portfolio-photo-row--three .portfolio-photo-tile{grid-column:auto;height:clamp(155px,42vw,240px)}
   .portfolio-photo-row--three .portfolio-photo-tile:last-child{grid-column:1 / -1;height:clamp(175px,46vw,270px)}
 }
+
+/* CMS photos: preserve the complete uploaded frame and its original aspect ratio. */
+.portfolio-masonry{columns:3;column-gap:10px;column-fill:balance}
+.portfolio-masonry .portfolio-photo-tile{display:block;width:100%;height:auto;min-height:0;margin:0 0 10px;break-inside:avoid-column;-webkit-column-break-inside:avoid;line-height:0}
+.portfolio-masonry .portfolio-photo-tile img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}
+.portfolio-hero-image img{object-fit:contain;background:var(--gallery-bg)}
+@media(max-width:980px){.portfolio-masonry{columns:2}}
+@media(max-width:640px){.portfolio-masonry{columns:1;column-gap:0}.portfolio-masonry .portfolio-photo-tile{margin-bottom:8px}}
