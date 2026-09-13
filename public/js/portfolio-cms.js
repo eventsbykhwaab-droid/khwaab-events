@@ -67,28 +67,49 @@
       }
       section.appendChild(heading);
 
-      // Keep the editor's photo order; alternating pairs and trios avoid a lone oversized card.
-      for (let start = 0; start < images.length;) {
+      const addPhoto = (row, photo, photoIndex, sizes) => {
+        const tile = document.createElement('button');
+        tile.className = 'portfolio-photo-tile';
+        tile.type = 'button';
+        tile.setAttribute('aria-label', `View photo ${photoIndex + 1} of ${images.length} from ${event.title}`);
+        const img = document.createElement('img');
+        img.src = optimized(photo.secure_url, 900);
+        img.srcset = [420, 700, 900, 1200].map((width) => `${optimized(photo.secure_url, width)} ${width}w`).join(', ');
+        img.sizes = sizes;
+        img.alt = photo.alt_text || `${event.title} event decor`;
+        img.loading = index === 0 && photoIndex < 2 ? 'eager' : 'lazy';
+        img.decoding = 'async';
+        if (photo.width && photo.height) { img.width = photo.width; img.height = photo.height; }
+        tile.appendChild(img);
+        tile.addEventListener('click', () => openEvent(event, photoIndex));
+        row.appendChild(tile);
+      };
+
+      let start = 0;
+      if (images.length >= 4) {
+        // Put a portrait beside a wider image so neither is forced into a uniform square crop.
+        const firstFour = images.slice(0, 4).map((photo, photoIndex) => ({ photo, photoIndex }));
+        const portraitIndex = firstFour.findIndex(({ photo }) => photo.width && photo.height && photo.height > photo.width);
+        const portrait = firstFour.splice(portraitIndex < 0 ? 0 : portraitIndex, 1)[0];
+        const landscapeIndex = firstFour.findIndex(({ photo }) => photo.width && photo.height && photo.width >= photo.height);
+        const wide = firstFour.splice(landscapeIndex < 0 ? 0 : landscapeIndex, 1)[0];
+        const feature = document.createElement('div');
+        feature.className = 'portfolio-photo-feature';
+        addPhoto(feature, portrait.photo, portrait.photoIndex, '(max-width: 640px) 50vw, 39vw');
+        addPhoto(feature, wide.photo, wide.photoIndex, '(max-width: 640px) 50vw, 60vw');
+        firstFour.forEach(({ photo, photoIndex }) => addPhoto(feature, photo, photoIndex, '(max-width: 640px) 50vw, 30vw'));
+        section.appendChild(feature);
+        start = 4;
+      }
+
+      while (start < images.length) {
         const remaining = images.length - start;
-        const count = remaining === 3 || remaining === 6 || (remaining >= 5 && start % 5 === 2) ? 3 : Math.min(2, remaining);
+        const count = remaining === 4 ? 2 : remaining >= 3 ? 3 : remaining;
         const row = document.createElement('div');
         row.className = `portfolio-photo-row portfolio-photo-row--${count}`;
         images.slice(start, start + count).forEach((photo, offset) => {
-          const tile = document.createElement('button');
-          tile.className = 'portfolio-photo-tile';
-          tile.type = 'button';
-          tile.setAttribute('aria-label', `View photo ${start + offset + 1} of ${images.length} from ${event.title}`);
-          const img = document.createElement('img');
-          img.src = optimized(photo.secure_url, 900);
-          img.srcset = [420, 700, 900, 1200].map((width) => `${optimized(photo.secure_url, width)} ${width}w`).join(', ');
-          img.sizes = count === 3 ? '(max-width: 640px) 50vw, 33vw' : '(max-width: 640px) 50vw, 50vw';
-          img.alt = photo.alt_text || `${event.title} event decor`;
-          img.loading = index === 0 && start === 0 && offset === 0 ? 'eager' : 'lazy';
-          img.decoding = 'async';
-          if (photo.width && photo.height) { img.width = photo.width; img.height = photo.height; }
-          tile.appendChild(img);
-          tile.addEventListener('click', () => openEvent(event, start + offset));
-          row.appendChild(tile);
+          const size = count === 3 && offset === 1 ? '46vw' : count === 3 ? '28vw' : '50vw';
+          addPhoto(row, photo, start + offset, `(max-width: 640px) 50vw, ${size}`);
         });
         section.appendChild(row);
         start += count;
