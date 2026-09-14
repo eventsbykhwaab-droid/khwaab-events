@@ -27,13 +27,13 @@
     });
   }
 
-  // Use the full-resolution Nikkah image files for the four hover cards.
-  // The previous SVG preview wrappers contained tiny raster images and looked blurry.
+  // Use the uploaded full-resolution divider photos in package order:
+  // Classic, Elegant White, Signature, Luxe.
   const dividerHoverImages = [
-    '/images/nikkah/nikkah1.jpg?v=3',
-    '/images/nikkah/nikkah2.jpg?v=3',
-    '/images/nikkah/nikkah3.jpg?v=3',
-    '/images/nikkah/nikkah4.jpg?v=3'
+    '/images/nikkah/divider-classic.jpg?v=5',
+    '/images/nikkah/divider-elegant.jpg?v=5',
+    '/images/nikkah/divider-signature.jpg?v=5',
+    '/images/nikkah/divider-luxe.jpg?v=5'
   ];
   const dividerCards = document.querySelectorAll('.divider-hover-card .divider-hover-preview img');
   dividerCards.forEach((image, index) => {
@@ -46,7 +46,7 @@
   if (dividerCards.length && !document.querySelector('link[data-nikkah-hover-fix]')) {
     const hoverFix = document.createElement('link');
     hoverFix.rel = 'stylesheet';
-    hoverFix.href = '/css/nikkah-hover-fix.css?v=3';
+    hoverFix.href = '/css/nikkah-hover-fix.css?v=5';
     hoverFix.setAttribute('data-nikkah-hover-fix', '');
     document.head.appendChild(hoverFix);
   }
