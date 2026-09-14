@@ -17,8 +17,22 @@
   let imageIndex = 0;
 
   const keyFor = (value) => value.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  const optimized = (url, width = 1400) => url.includes('/upload/') ? url.replace('/upload/', `/upload/f_auto,q_auto,c_limit,w_${width}/`) : url;
   const sortedImages = (event) => [...(event.portfolio_images || [])].sort((a, b) => a.sort_order - b.sort_order);
+  const aspect = (photo) => photo.width > 0 && photo.height > 0 ? photo.width / photo.height : 1;
+  const photoRows = (images) => {
+    const rows = [];
+    for (let index = 0; index < images.length;) {
+      const row = [];
+      let totalAspect = 0;
+      while (index < images.length && (row.length < 2 || (row.length < 4 && totalAspect < 3.3))) {
+        row.push({ photo: images[index], index, ratio: aspect(images[index]) });
+        totalAspect += aspect(images[index]);
+        index += 1;
+      }
+      rows.push(row);
+    }
+    return rows;
+  };
   const coverFor = (event) => {
     const images = sortedImages(event);
     return images.find((image) => image.is_cover) || images[0];
@@ -67,24 +81,30 @@
       }
       section.appendChild(heading);
 
-      const wall = document.createElement('div');
-      wall.className = 'portfolio-masonry';
-      images.forEach((photo, photoIndex) => {
-        const tile = document.createElement('button');
-        tile.className = 'portfolio-photo-tile';
-        tile.type = 'button';
-        tile.setAttribute('aria-label', `View photo ${photoIndex + 1} of ${images.length} from ${event.title}`);
-        const img = document.createElement('img');
-        img.src = photo.secure_url;
-        img.alt = photo.alt_text || `${event.title} event decor`;
-        img.loading = index === 0 && photoIndex === 0 ? 'eager' : 'lazy';
-        img.decoding = 'async';
-        if (photo.width && photo.height) { img.width = photo.width; img.height = photo.height; }
-        tile.appendChild(img);
-        tile.addEventListener('click', () => openEvent(event, photoIndex));
-        wall.appendChild(tile);
+      const gallery = document.createElement('div');
+      gallery.className = 'portfolio-natural-gallery';
+      photoRows(images).forEach((photos) => {
+        const row = document.createElement('div');
+        row.className = `portfolio-natural-row${photos.length === 1 ? ' portfolio-natural-row--single' : ''}`;
+        photos.forEach(({ photo, index: photoIndex, ratio }) => {
+          const tile = document.createElement('button');
+          tile.className = 'portfolio-photo-tile';
+          tile.type = 'button';
+          tile.style.flex = `${ratio} 1 0%`;
+          tile.setAttribute('aria-label', `View photo ${photoIndex + 1} of ${images.length} from ${event.title}`);
+          const img = document.createElement('img');
+          img.src = photo.secure_url;
+          img.alt = photo.alt_text || `${event.title} event decor`;
+          img.loading = index === 0 && photoIndex === 0 ? 'eager' : 'lazy';
+          img.decoding = 'async';
+          if (photo.width && photo.height) { img.width = photo.width; img.height = photo.height; }
+          tile.appendChild(img);
+          tile.addEventListener('click', () => openEvent(event, photoIndex));
+          row.appendChild(tile);
+        });
+        gallery.appendChild(row);
       });
-      section.appendChild(wall);
+      section.appendChild(gallery);
       eventGrid.appendChild(section);
 
       if ((index + 1) % 3 === 0 && index < visible.length - 1) {
