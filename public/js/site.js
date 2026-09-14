@@ -27,21 +27,26 @@
     });
   }
 
+  // Use the full-resolution Nikkah image files for the four hover cards.
+  // The previous SVG preview wrappers contained tiny raster images and looked blurry.
   const dividerHoverImages = [
-    '/images/nikkah/divider-classic-hover.svg',
-    '/images/nikkah/divider-elegant-white-hover.svg',
-    '/images/nikkah/divider-signature-hover.svg',
-    '/images/nikkah/divider-luxe-hover.svg'
+    '/images/nikkah/nikkah1.jpg?v=3',
+    '/images/nikkah/nikkah2.jpg?v=3',
+    '/images/nikkah/nikkah3.jpg?v=3',
+    '/images/nikkah/nikkah4.jpg?v=3'
   ];
   const dividerCards = document.querySelectorAll('.divider-hover-card .divider-hover-preview img');
   dividerCards.forEach((image, index) => {
-    if (dividerHoverImages[index]) image.src = dividerHoverImages[index];
+    if (!dividerHoverImages[index]) return;
+    image.src = dividerHoverImages[index];
+    image.removeAttribute('srcset');
+    image.style.filter = 'none';
   });
 
   if (dividerCards.length && !document.querySelector('link[data-nikkah-hover-fix]')) {
     const hoverFix = document.createElement('link');
     hoverFix.rel = 'stylesheet';
-    hoverFix.href = '/css/nikkah-hover-fix.css?v=2';
+    hoverFix.href = '/css/nikkah-hover-fix.css?v=3';
     hoverFix.setAttribute('data-nikkah-hover-fix', '');
     document.head.appendChild(hoverFix);
   }
