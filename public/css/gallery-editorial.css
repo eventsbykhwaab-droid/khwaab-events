@@ -79,48 +79,18 @@
 .portfolio-story-type{font-size:.7rem;text-transform:uppercase;letter-spacing:.17em;color:var(--gallery-accent)}
 .portfolio-story-heading h2{margin:.35rem 0 0;font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:clamp(2rem,3.4vw,3.5rem);line-height:1.07}
 .portfolio-story-location{font-size:.85rem;color:var(--gallery-muted);padding-bottom:.3rem}
-.portfolio-photo-row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px;margin-bottom:10px}
-.portfolio-photo-tile{position:relative;display:block;grid-column:span 6;height:clamp(205px,29vw,390px);padding:0;border:0;overflow:hidden;background:#e8dfd7;cursor:zoom-in}
-.portfolio-photo-row--three .portfolio-photo-tile{grid-column:span 4;height:clamp(185px,24vw,325px)}
-.portfolio-photo-row--one .portfolio-photo-tile{grid-column:span 8;max-width:780px}
-.portfolio-photo-tile img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .45s ease,filter .45s ease}
-.portfolio-photo-tile:hover img,.portfolio-photo-tile:focus-visible img{transform:scale(1.025);filter:brightness(.94)}
-.portfolio-photo-tile:focus-visible{outline:3px solid var(--gallery-accent);outline-offset:2px}
 .portfolio-inline-cta{min-height:220px;margin:1.5rem 0;gap:.4rem}
 .portfolio-inline-cta strong{font-size:clamp(2rem,3.8vw,3.5rem)}
 @media(max-width:980px){.portfolio-hero{grid-template-columns:1fr minmax(0,40%);padding:2.5rem 22px;gap:1.4rem}.portfolio-hero-copy{padding:0}.portfolio-hero-image{height:260px;min-height:0}}
-@media(max-width:640px){.portfolio-hero{grid-template-columns:1fr;padding:2rem 16px 1rem;gap:1.4rem}.portfolio-hero-copy{padding:0}.portfolio-hero-copy h1{font-size:clamp(2.8rem,11vw,4rem)}.portfolio-hero-image{width:100%;height:220px;min-height:0}.portfolio-event-section{padding:0 10px 2rem}.portfolio-story{padding:2rem 0}.portfolio-story-heading{align-items:start;flex-direction:column;gap:.2rem;padding:0 6px}.portfolio-photo-row{gap:6px;margin-bottom:6px}.portfolio-photo-tile{height:clamp(155px,42vw,240px)}.portfolio-photo-row--three .portfolio-photo-tile{grid-column:span 6;height:clamp(155px,42vw,240px)}.portfolio-photo-row--three .portfolio-photo-tile:last-child{grid-column:span 12;height:clamp(175px,46vw,270px)}.portfolio-photo-row--one .portfolio-photo-tile{grid-column:span 12;height:230px}}
-@media(prefers-reduced-motion:reduce){.portfolio-photo-tile img{transition:none}}
+@media(max-width:640px){.portfolio-hero{grid-template-columns:1fr;padding:2rem 16px 1rem;gap:1.4rem}.portfolio-hero-copy{padding:0}.portfolio-hero-copy h1{font-size:clamp(2.8rem,11vw,4rem)}.portfolio-hero-image{width:100%;height:220px;min-height:0}.portfolio-event-section{padding:0 10px 2rem}.portfolio-story{padding:2rem 0}.portfolio-story-heading{align-items:start;flex-direction:column;gap:.2rem;padding:0 6px}}
 
-/* Approved mixed-proportion layout: portrait feature, wide scene and smaller details. */
-.portfolio-photo-feature{display:grid;grid-template-columns:39fr 30fr 31fr;grid-template-rows:repeat(2,clamp(175px,20vw,245px));gap:10px;margin-bottom:10px}
-.portfolio-photo-feature .portfolio-photo-tile{grid-column:auto;height:100%;min-height:0}
-.portfolio-photo-feature .portfolio-photo-tile:nth-child(1){grid-column:1;grid-row:1 / 3}
-.portfolio-photo-feature .portfolio-photo-tile:nth-child(2){grid-column:2 / 4;grid-row:1}
-.portfolio-photo-feature .portfolio-photo-tile:nth-child(3){grid-column:2;grid-row:2}
-.portfolio-photo-feature .portfolio-photo-tile:nth-child(4){grid-column:3;grid-row:2}
-.portfolio-photo-row--three{grid-template-columns:26fr 46fr 28fr}
-.portfolio-photo-row--two{grid-template-columns:54fr 46fr}
-.portfolio-story:nth-child(even) .portfolio-photo-row--two{grid-template-columns:46fr 54fr}
-.portfolio-photo-row--one{grid-template-columns:minmax(0,1fr)}
-.portfolio-photo-row .portfolio-photo-tile{grid-column:auto;min-width:0}
-.portfolio-photo-row--three .portfolio-photo-tile{height:clamp(220px,28vw,350px)}
-.portfolio-photo-row--one .portfolio-photo-tile{width:min(100%,780px)}
-@media(max-width:640px){
-  .portfolio-photo-feature{grid-template-columns:1fr 1fr;grid-template-rows:repeat(2,clamp(145px,39vw,210px)) clamp(175px,48vw,260px);gap:6px;margin-bottom:6px}
-  .portfolio-photo-feature .portfolio-photo-tile:nth-child(1){grid-column:1;grid-row:1 / 3}
-  .portfolio-photo-feature .portfolio-photo-tile:nth-child(2){grid-column:2;grid-row:1}
-  .portfolio-photo-feature .portfolio-photo-tile:nth-child(3){grid-column:2;grid-row:2}
-  .portfolio-photo-feature .portfolio-photo-tile:nth-child(4){grid-column:1 / -1;grid-row:3}
-  .portfolio-photo-row--two,.portfolio-story:nth-child(even) .portfolio-photo-row--two,.portfolio-photo-row--three{grid-template-columns:1fr 1fr}
-  .portfolio-photo-row--three .portfolio-photo-tile{grid-column:auto;height:clamp(155px,42vw,240px)}
-  .portfolio-photo-row--three .portfolio-photo-tile:last-child{grid-column:1 / -1;height:clamp(175px,46vw,270px)}
-}
-
-/* CMS photos: preserve the complete uploaded frame and its original aspect ratio. */
-.portfolio-masonry{columns:3;column-gap:10px;column-fill:balance}
-.portfolio-masonry .portfolio-photo-tile{display:block;width:100%;height:auto;min-height:0;margin:0 0 10px;break-inside:avoid-column;-webkit-column-break-inside:avoid;line-height:0}
-.portfolio-masonry .portfolio-photo-tile img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}
+/* Justified rows use each uploaded photo's aspect ratio; no cover crop or zoom. */
+.portfolio-natural-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.portfolio-natural-row .portfolio-photo-tile{display:block;min-width:0;height:auto;padding:0;border:0;background:transparent;cursor:zoom-in;line-height:0}
+.portfolio-natural-row .portfolio-photo-tile img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}
+.portfolio-natural-row .portfolio-photo-tile:hover img,.portfolio-natural-row .portfolio-photo-tile:focus-visible img{filter:brightness(.94)}
+.portfolio-natural-row .portfolio-photo-tile:focus-visible{outline:3px solid var(--gallery-accent);outline-offset:2px}
+.portfolio-natural-row--single .portfolio-photo-tile{max-width:min(100%,760px)}
 .portfolio-hero-image img{object-fit:contain;background:var(--gallery-bg)}
-@media(max-width:980px){.portfolio-masonry{columns:2}}
-@media(max-width:640px){.portfolio-masonry{columns:1;column-gap:0}.portfolio-masonry .portfolio-photo-tile{margin-bottom:8px}}
+.portfolio-hero-image:hover img,.portfolio-hero-image:focus-visible img{transform:none}
+@media(max-width:640px){.portfolio-natural-row{display:block;margin-bottom:0}.portfolio-natural-row .portfolio-photo-tile{width:100%;margin-bottom:8px}}
