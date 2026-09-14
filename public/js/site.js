@@ -33,9 +33,18 @@
     '/images/nikkah/divider-signature-hover.svg',
     '/images/nikkah/divider-luxe-hover.svg'
   ];
-  document.querySelectorAll('.divider-hover-card .divider-hover-preview img').forEach((image, index) => {
+  const dividerCards = document.querySelectorAll('.divider-hover-card .divider-hover-preview img');
+  dividerCards.forEach((image, index) => {
     if (dividerHoverImages[index]) image.src = dividerHoverImages[index];
   });
+
+  if (dividerCards.length && !document.querySelector('link[data-nikkah-hover-fix]')) {
+    const hoverFix = document.createElement('link');
+    hoverFix.rel = 'stylesheet';
+    hoverFix.href = '/css/nikkah-hover-fix.css?v=1';
+    hoverFix.setAttribute('data-nikkah-hover-fix', '');
+    document.head.appendChild(hoverFix);
+  }
 
   if (!document.querySelector('.whatsapp-float')) {
     const whatsapp = document.createElement('a');
