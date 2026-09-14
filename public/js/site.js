@@ -41,7 +41,7 @@
   if (dividerCards.length && !document.querySelector('link[data-nikkah-hover-fix]')) {
     const hoverFix = document.createElement('link');
     hoverFix.rel = 'stylesheet';
-    hoverFix.href = '/css/nikkah-hover-fix.css?v=1';
+    hoverFix.href = '/css/nikkah-hover-fix.css?v=2';
     hoverFix.setAttribute('data-nikkah-hover-fix', '');
     document.head.appendChild(hoverFix);
   }
