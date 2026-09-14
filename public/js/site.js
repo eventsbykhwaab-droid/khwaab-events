@@ -27,6 +27,16 @@
     });
   }
 
+  const dividerHoverImages = [
+    '/images/nikkah/divider-classic-hover.svg',
+    '/images/nikkah/divider-elegant-white-hover.svg',
+    '/images/nikkah/divider-signature-hover.svg',
+    '/images/nikkah/divider-luxe-hover.svg'
+  ];
+  document.querySelectorAll('.divider-hover-card .divider-hover-preview img').forEach((image, index) => {
+    if (dividerHoverImages[index]) image.src = dividerHoverImages[index];
+  });
+
   if (!document.querySelector('.whatsapp-float')) {
     const whatsapp = document.createElement('a');
     whatsapp.className = 'whatsapp-float';
