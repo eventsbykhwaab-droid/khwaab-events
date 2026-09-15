@@ -147,6 +147,8 @@
   }
 
   function enableFallback() {
+    fallback.classList.add('portfolio-fallback-ready');
+    if (heroImage) heroImage.classList.add('portfolio-hero-ready');
     const filters = [...document.querySelectorAll('.gallery-filter')];
     const groups = [...document.querySelectorAll('.portfolio-section')];
     const filterGallery = (category) => {
@@ -181,11 +183,19 @@
       renderEvents();
       const firstCover = coverFor(allEvents[0]);
       if (firstCover && heroImage) {
-        heroImage.src = firstCover.secure_url;
-        heroImage.removeAttribute('srcset');
-        heroImage.removeAttribute('sizes');
-        heroImage.alt = firstCover.alt_text || allEvents[0].title;
+        const preload = new Image();
+        preload.onload = () => {
+          heroImage.src = firstCover.secure_url;
+          heroImage.removeAttribute('srcset');
+          heroImage.removeAttribute('sizes');
+          heroImage.alt = firstCover.alt_text || allEvents[0].title;
+          heroImage.classList.add('portfolio-hero-ready');
+        };
+        preload.onerror = () => heroImage.classList.add('portfolio-hero-ready');
+        preload.src = firstCover.secure_url;
         document.querySelector('.portfolio-hero-image').addEventListener('click', () => openEvent(allEvents[0], sortedImages(allEvents[0]).findIndex((image) => image.id === firstCover.id)));
+      } else if (heroImage) {
+        heroImage.classList.add('portfolio-hero-ready');
       }
       fallback.hidden = true;
       dynamicSection.hidden = false;
