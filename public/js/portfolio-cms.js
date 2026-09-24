@@ -19,6 +19,15 @@
   const keyFor = (value) => value.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   const sortedImages = (event) => [...(event.portfolio_images || [])].sort((a, b) => a.sort_order - b.sort_order);
   const aspect = (photo) => photo.width > 0 && photo.height > 0 ? photo.width / photo.height : 1;
+
+  // Cloudinary gallery images should never load at their original upload size.
+  // Use automatic format/quality and cap display width for faster page loads.
+  const optimizedImageUrl = (url, width = 1200) => {
+    if (!url || !url.includes('/upload/')) return url;
+    return url.replace('/upload/', `/upload/f_auto,q_auto:eco,c_limit,w_${width}/`);
+  };
+
+  const lightboxImageUrl = (url) => optimizedImageUrl(url, 1800);
   const photoRows = (images) => {
     const rows = [];
     for (let index = 0; index < images.length;) {
@@ -93,7 +102,7 @@
           tile.style.flex = `${ratio} 1 0%`;
           tile.setAttribute('aria-label', `View photo ${photoIndex + 1} of ${images.length} from ${event.title}`);
           const img = document.createElement('img');
-          img.src = photo.secure_url;
+          img.src = optimizedImageUrl(photo.secure_url, 1200);
           img.alt = photo.alt_text || `${event.title} event decor`;
           img.loading = index === 0 && photoIndex === 0 ? 'eager' : 'lazy';
           img.decoding = 'async';
@@ -132,7 +141,7 @@
     if (!activeImages.length) return;
     imageIndex = (imageIndex + activeImages.length) % activeImages.length;
     const image = activeImages[imageIndex];
-    lightboxImage.src = image.secure_url;
+    lightboxImage.src = lightboxImageUrl(image.secure_url);
     lightboxImage.alt = image.alt_text || activeEvent.title;
     lightboxKicker.textContent = activeEvent.event_type;
     lightboxTitle.textContent = activeEvent.title;
@@ -185,14 +194,14 @@
       if (firstCover && heroImage) {
         const preload = new Image();
         preload.onload = () => {
-          heroImage.src = firstCover.secure_url;
+          heroImage.src = optimizedImageUrl(firstCover.secure_url, 1600);
           heroImage.removeAttribute('srcset');
           heroImage.removeAttribute('sizes');
           heroImage.alt = firstCover.alt_text || allEvents[0].title;
           heroImage.classList.add('portfolio-hero-ready');
         };
         preload.onerror = () => heroImage.classList.add('portfolio-hero-ready');
-        preload.src = firstCover.secure_url;
+        preload.src = optimizedImageUrl(firstCover.secure_url, 1600);
         document.querySelector('.portfolio-hero-image').addEventListener('click', () => openEvent(allEvents[0], sortedImages(allEvents[0]).findIndex((image) => image.id === firstCover.id)));
       } else if (heroImage) {
         heroImage.classList.add('portfolio-hero-ready');
