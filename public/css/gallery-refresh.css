@@ -20,3 +20,17 @@
 @media(prefers-reduced-motion:reduce){
   .portfolio-hero-image img{transition:none}
 }
+
+
+/* Performance: let the browser skip layout/paint work for gallery stories
+   until they are close to the viewport. */
+.portfolio-story,
+.portfolio-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
+}
+
+.portfolio-photo-tile img,
+.gallery-item img {
+  content-visibility: auto;
+}
